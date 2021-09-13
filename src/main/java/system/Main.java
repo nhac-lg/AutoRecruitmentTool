@@ -5,8 +5,10 @@
  */
 package system;
 
+import common.Information;
+import common.Utils;
 import database.DBServer;
-
+import selenium.SelServices;
 /**
  *
  * @author Eagle
@@ -14,12 +16,20 @@ import database.DBServer;
 public class Main {
     public static void main(String args[]){
         System.out.println("Hello application !!!!");
+        SelServices sel= new SelServices();
+        InitApp();
         
-         InitApp();
     }
     
     private static void InitApp(){
-       
+        Utils.ReadXML();
+        System.out.println(Information.lstRecruiter.size());
+        Information.Browser=Information.lstRecruiter.get(0).getURL() ;
+        Information.Username=Information.lstRecruiter.get(0).oAccount.getAccName() ;
+        Information.Password=Information.lstRecruiter.get(0).oAccount.getPW() ;
+        System.out.println(Information.Browser);
+        System.out.println(Information.Username);
+        System.out.println(Information.Password);
     }
     private static void connectDB(String username, String password, String db_url){
         DBServer db= new DBServer();

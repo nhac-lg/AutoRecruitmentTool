@@ -12,8 +12,16 @@ package dataobjects;
 public class Recruiter {
     public String URL ="";
     public Account oAccount = null;
+    public String getURL() {
+        return URL;
+    }
+     public void setURL(String uRL) {
+        URL = uRL;
+    }
+
     
-    public Recruiter(){}
+    public Recruiter(){
+    }
     public Recruiter(String sURL, Account oAcc){
         URL = sURL;
         oAccount = oAcc;
