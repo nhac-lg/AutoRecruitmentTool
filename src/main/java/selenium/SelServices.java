@@ -5,20 +5,29 @@
  */
 package selenium;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 /**
- *
  * @author Eagle
  */
 public class SelServices {
-    public static Object oDriver = null; 
-    
-    public SelServices(){
-        InitSelEnv("");
+    public static String driverType = "chrome";
+    public static Object oDriver = null;
+
+    public SelServices() {
+        InitSelEnv();
     }
-    //sBrower is empty, the app will choose default browser of the machine 
-    private boolean InitSelEnv(String sBrowser){
-        return true;
+
+    private void InitSelEnv() {
+        if (driverType == "chrome") {
+            WebDriverManager.chromedriver().setup();
+            oDriver = new ChromeDriver();
+        }
+        if (driverType == "firefox") {
+            WebDriverManager.firefoxdriver().setup();
+            oDriver = new FirefoxDriver();
+        }
     }
-    
-    
 }

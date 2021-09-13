@@ -5,6 +5,8 @@
  */
 package system;
 
+import database.DBServer;
+
 /**
  *
  * @author Eagle
@@ -18,5 +20,14 @@ public class Main {
     
     private static void InitApp(){
        
+    }
+    private static void connectDB(String username, String password, String db_url){
+        DBServer db= new DBServer();
+        db.setDatabase(username, password, db_url);
+        if(db.connect()){
+
+        }else{
+            System.out.println("Database connect failed");
+        }
     }
 }
