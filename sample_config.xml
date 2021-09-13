@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <recruiters>
+        <recruiter>
+            <url></url>
+            <account></account>
+            <password></password>
+        </recruiter>
+        <recruiter>
+            <url></url>
+            <account></account>
+            <password></password>
+        </recruiter>
+    </recruiters>
+    <database>
+        <url></url>
+        <account></account>
+        <password></password>
+    </database>
+    <browser>
+        <default></default>
+    </browser>
+</config>
