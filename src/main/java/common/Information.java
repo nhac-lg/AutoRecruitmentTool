@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Information {
     public static String Browser =""; 
-    public static String Username =""; 
-    public static String Password =""; 
+    public static String User =""; 
+    public static String Pass =""; 
     public static List<Recruiter> lstRecruiter=null;
 }

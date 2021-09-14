@@ -12,19 +12,21 @@ package dataobjects;
 public class Account {
     public String AccName;
     public String PW; 
+
     public String getAccName() {
         return AccName;
     }
 
-    public void setAccName(String accName) {
-        AccName = accName;
+    public void setAccName(String AccName) {
+        this.AccName = AccName;
     }
+
     public String getPW() {
         return PW;
     }
 
-    public void setPW(String pW) {
-        PW = pW;
+    public void setPW(String PW) {
+        this.PW = PW;
     }
 
     public Account(){}

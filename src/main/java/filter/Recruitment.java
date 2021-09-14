@@ -25,7 +25,7 @@ public class Recruitment {
     public String Phone;
     public String Refeeral;
   
-    public List<Candidate> lstCandidates;
+    public static List<Candidate> lstCandidates;
     
     public List<Candidate> Filter(){
         return null;

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package common;
+
 import dataobjects.Account;
 import dataobjects.Recruiter;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,19 +19,33 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 /**
  *
  * @author Eagle
  */
 public class Utils {
-public static void ReadXML() {
+
+    public static Recruiter find(String url_find) {
+        for (Recruiter re : Information.lstRecruiter) {
+            if (re.getURL().contains(url_find)) {
+                return re;
+            }
+        }
+        return null;
+    }
+
+    public static void ReadXML() {
         try {
-            File file = new File("sample_config.xml");
+//            String currentpath = System.getProperty("user.dir");
+//            String namefile="sample_config.xml";
+//            String config=currentpath+"\\"+namefile;
+            String config = "F:\\sample_config1.xml";
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = null;
             try {
-                doc = db.parse(file);
+                doc = db.parse(config);
             } catch (SAXException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -40,7 +54,7 @@ public static void ReadXML() {
             doc.getDocumentElement().normalize();
             System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
             NodeList nodeList = doc.getElementsByTagName("recruiter");
-            Information.lstRecruiter= new ArrayList<>();
+            Information.lstRecruiter = new ArrayList<>();
             for (int itr = 0; itr < nodeList.getLength(); itr++) {
                 Node node = nodeList.item(itr);
                 //System.out.println("\nNode Name :" + node.getNodeName());

@@ -12,13 +12,22 @@ package dataobjects;
 public class Recruiter {
     public String URL ="";
     public Account oAccount = null;
+
     public String getURL() {
         return URL;
     }
-     public void setURL(String uRL) {
-        URL = uRL;
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 
+    public Account getoAccount() {
+        return oAccount;
+    }
+
+    public void setoAccount(Account oAccount) {
+        this.oAccount = oAccount;
+    }
     
     public Recruiter(){
     }

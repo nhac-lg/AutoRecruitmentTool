@@ -81,5 +81,10 @@ public String name, position, company, year, salary, location;
         this.location = location;
         this.src_link = src_link;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Candidate{" + "name=" + name + ", position=" + position + ", company=" + company + ", year=" + year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + '}';
+    }
+
 }

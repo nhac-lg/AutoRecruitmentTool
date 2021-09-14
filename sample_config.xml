@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+    <recruiters>
         <recruiter>
             <url></url>
             <account></account>
@@ -10,6 +11,7 @@
             <account></account>
             <password></password>
         </recruiter>
+    </recruiters>
     <database>
         <url></url>
         <account></account>
