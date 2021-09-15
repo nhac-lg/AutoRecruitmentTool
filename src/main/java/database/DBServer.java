@@ -6,10 +6,7 @@
 package database;
 
 import dataobjects.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 /**
  *
@@ -49,6 +46,15 @@ public class DBServer {
             
     public boolean AddCandidate(Candidate oCandidate)
     {
+        String query = "INSERT INTO `candidate` (`id`, `name`, `phone`, `job_title`, `cv_date`, `experience`, `expectation`, `location`, `referral`, `latest_result`)" +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setString (2, oCandidate.getName());
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return true;
     }    
 
