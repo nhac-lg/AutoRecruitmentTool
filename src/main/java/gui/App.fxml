@@ -2,32 +2,85 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppController">
     <stylesheets>
         <URL value="@app.css" />
     </stylesheets>
    <children>
-      <Accordion layoutX="8.0" layoutY="14.0">
+      <Accordion layoutX="82.0" layoutY="10.0" maxWidth="200.0">
         <panes>
-          <TitledPane animated="false" prefHeight="500.0" prefWidth="200.0" text="Search Online">
+          <TitledPane animated="false" text="Search Online">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="100.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <ComboBox layoutX="90.0" layoutY="14.0" prefHeight="26.0" prefWidth="100.0" promptText="VNWorks" />
+                        <TextField layoutX="8.0" layoutY="70.0" prefHeight="26.0" prefWidth="180.0" />
+                        <Label layoutX="8.0" layoutY="19.0" prefHeight="17.0" prefWidth="67.0" text="Source:" />
+                        <Label layoutX="8.0" layoutY="53.0" text="Keyword to Search" />
+                        <Label layoutX="9.0" layoutY="103.0" text="Last Resume Update" />
+                        <ComboBox layoutX="10.0" layoutY="120.0" prefHeight="26.0" prefWidth="179.0" promptText="Any" />
+                        <Label layoutX="11.0" layoutY="154.0" prefHeight="17.0" prefWidth="111.0" text="Years of Experience" />
+                        <Label layoutX="11.0" layoutY="171.0" prefHeight="17.0" prefWidth="31.0" text="From" />
+                        <Label layoutX="104.0" layoutY="171.0" text="To" />
+                        <TextField layoutX="9.0" layoutY="188.0" prefHeight="26.0" prefWidth="79.0" />
+                        <TextField layoutX="104.0" layoutY="188.0" prefHeight="26.0" prefWidth="83.0" />
+                        <Label layoutX="6.0" layoutY="221.0" text="Expected Working Location" />
+                        <ComboBox layoutX="9.0" layoutY="238.0" prefHeight="26.0" prefWidth="178.0" promptText="Choose cities" />
+                        <CheckBox layoutX="10.0" layoutY="270.0" mnemonicParsing="false" selected="true" text="Skip &quot;viewed&quot; resume" />
+                        <Label layoutX="8.0" layoutY="296.0" text="Sort By" />
+                        <ComboBox layoutX="8.0" layoutY="313.0" prefHeight="26.0" prefWidth="181.0" promptText="Latest Resume Update" />
+                        <Label layoutX="20.0" layoutY="355.0" text="Show First" />
+                        <TextField alignment="CENTER_RIGHT" layoutX="114.0" layoutY="350.0" prefHeight="26.0" prefWidth="78.0" text="100" />
+                        <Button layoutX="104.0" layoutY="384.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Search" />
+                        <Button layoutX="7.0" layoutY="384.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Reset Filter" />
+                        <Label layoutX="120.0" layoutY="53.0" text="*" textFill="RED" />
+                        <Label layoutX="85.0" layoutY="355.0" text="*" textFill="RED" />
+                     </children></AnchorPane>
             </content>
           </TitledPane>
           <TitledPane animated="false" text="Search from Folder">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="100.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" />
             </content>
           </TitledPane>
           <TitledPane animated="false" text="Search local DB">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="100.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" />
             </content>
           </TitledPane>
         </panes>
       </Accordion>
+      <Label layoutX="299.0" layoutY="15.0" prefHeight="17.0" prefWidth="39.0" text="Filter:" />
+      <ComboBox layoutX="344.0" layoutY="10.0" prefWidth="100.0" promptText="Title: all" />
+      <ComboBox layoutX="453.0" layoutY="10.0" prefWidth="125.0" promptText="Experience: all" />
+      <ComboBox layoutX="584.0" layoutY="10.0" prefWidth="100.0" promptText="Status: all" />
+      <ComboBox layoutX="691.0" layoutY="10.0" prefWidth="100.0" promptText="Label: all" />
+      <ComboBox layoutX="799.0" layoutY="10.0" prefWidth="125.0" promptText="Location: all" />
+      <ComboBox layoutX="930.0" layoutY="10.0" prefWidth="125.0" promptText="Referral: all" />
+      <ComboBox layoutX="1061.0" layoutY="10.0" prefWidth="125.0" promptText="CV Date: all" />
+      <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="67.0" text="Icons" />
+      <TableView layoutX="294.0" layoutY="40.0" prefHeight="544.0" prefWidth="895.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button layoutX="7.0" layoutY="78.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="67.0" text="Icons" />
+      <Button layoutX="7.0" layoutY="145.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="67.0" text="Icons" />
+      <Button layoutX="7.0" layoutY="213.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="67.0" text="Icons" />
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>
