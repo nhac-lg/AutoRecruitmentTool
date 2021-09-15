@@ -10,9 +10,18 @@ package dataobjects;
  * @author Eagle
  */
 public class Recruiter {
+    public String name="";
     public String URL ="";
     public Account oAccount = null;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public String getURL() {
         return URL;
     }
@@ -31,7 +40,8 @@ public class Recruiter {
     
     public Recruiter(){
     }
-    public Recruiter(String sURL, Account oAcc){
+    public Recruiter(String sName,String sURL, Account oAcc){
+        name = sName;
         URL = sURL;
         oAccount = oAcc;
     }

@@ -5,8 +5,11 @@
  */
 package filter;
 
+import com.google.common.base.CharMatcher;
 import common.Information;
+import common.Utils;
 import dataobjects.Candidate;
+import dataobjects.Recruiter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,7 +28,23 @@ import selenium.SelServices;
  */
 public class Recruitment_VietNamWork extends Recruitment {
 
-    public static boolean existsElementbyid(String id) {
+    Recruiter Recruiter_vnwork;
+
+    public Recruitment_VietNamWork() {
+        //tìm recruiter cho vietnamwork
+        Recruiter_vnwork = vnwork(Information.source);
+    }
+
+    private Recruiter vnwork(String vnwork) {
+        for (Recruiter re : Information.lstRecruiter) {
+            if (re.getName().equalsIgnoreCase(vnwork)) {
+                return re;
+            }
+        }
+        return null;
+    }
+
+    public boolean existsElementbyid(String id) {
         try {
             SelServices.oDriver.findElement(By.id(id));
         } catch (NoSuchElementException e) {
@@ -34,7 +53,7 @@ public class Recruitment_VietNamWork extends Recruitment {
         return true;
     }
 
-    public static boolean existsElementbyxpath(String xpath) {
+    public boolean existsElementbyxpath(String xpath) {
         try {
             SelServices.oDriver.findElement(By.xpath(xpath));
         } catch (NoSuchElementException e) {
@@ -43,36 +62,38 @@ public class Recruitment_VietNamWork extends Recruitment {
         return true;
     }
 
-    public static void find_login(String username, String pass) {
-        SelServices.oDriver.findElement(By.id("username")).sendKeys(username);
-        SelServices.oDriver.findElement(By.id("password")).sendKeys(pass);
-        SelServices.oDriver.findElement(By.id("btnLogin")).click();
-    }
-
-    public void Navigate() {
+    public boolean NavigateTome() {
         String title = "VietnamWorks - Top employment and recruitment website in Vietnam.";
         SelServices.oDriver.manage().window().maximize();
-        SelServices.oDriver.get(Information.Browser);
+        SelServices.oDriver.get(Recruiter_vnwork.getURL());
         if (SelServices.oDriver.getTitle().equals(title)) {
             System.out.println("Page VietNamWork exits");
-        } else {
-            System.out.println("Page VietNamWork doesn't exits");
-        }
-    }
-
-    public boolean Login() {
-        if (existsElementbyid("btnLogin")) {
-            find_login(Information.User, Information.Pass);
             return true;
         }
         return false;
     }
 
-    public void clicksearch() {
-        SelServices.oDriver.findElement(By.xpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")).click();
+    public boolean Login() {
+        if (existsElementbyid("btnLogin")) {
+            SelServices.oDriver.findElement(By.id("username")).sendKeys(Recruiter_vnwork.getoAccount().getAccName());
+            SelServices.oDriver.findElement(By.id("password")).sendKeys(Recruiter_vnwork.getoAccount().getPW());
+            SelServices.oDriver.findElement(By.id("btnLogin")).click();
+            return true;
+        }
+        return false;
     }
 
-    public static boolean set_categori(String text) {
+    public boolean clicksearch() {
+        //span[contains(text(),'Close')]
+        SelServices.oDriver.findElement(By.xpath("//span[contains(text(),'Close')]")).click();
+        if (existsElementbyxpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")) {
+            SelServices.oDriver.findElement(By.xpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")).click();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean set_categori(String text) {
         SelServices.oDriver.findElement(By.xpath("//input[@placeholder='Choose categories...']")).sendKeys(text);
         List<WebElement> List = SelServices.oDriver.findElements(By.xpath("//ul[@id='select2-category-results']/li"));
         for (WebElement li : List) {
@@ -84,7 +105,7 @@ public class Recruitment_VietNamWork extends Recruitment {
         return false;
     }
 
-    public static boolean set_working_location(String text) {
+    public boolean set_working_location(String text) {
         SelServices.oDriver.findElement(By.xpath("//input[@placeholder='Choose locations...']")).sendKeys(text);
         List<WebElement> List = SelServices.oDriver.findElements(By.xpath("//ul[@id='select2-location-results']/li"));
         for (WebElement li : List) {
@@ -96,7 +117,7 @@ public class Recruitment_VietNamWork extends Recruitment {
         return false;
     }
 
-    public static boolean set_home_address(String text) {
+    public boolean set_home_address(String text) {
         SelServices.oDriver.findElement(By.xpath("//span[@id='select2-homeaddress-container']")).click();
         SelServices.oDriver.findElement(By.xpath("//span[@class='select2-search select2-search--dropdown']//input[@role='textbox']"))
                 .sendKeys(text);
@@ -110,7 +131,7 @@ public class Recruitment_VietNamWork extends Recruitment {
         return false;
     }
 
-    public static boolean set_last_resume(String text) {
+    public boolean set_last_resume(String text) {
         SelServices.oDriver.findElement(By.xpath("/html[1]/body[1]/div[8]/div[1]/div[1]/"
                 + "div[1]/div[1]/div[1]/div[1]/div[2]/div[5]/span[1]/span[1]/span[1]/span[1]")).click();
         List<WebElement> List = SelServices.oDriver.findElements(By.xpath("//*[@class='select2-results__options']/li"));
@@ -123,7 +144,7 @@ public class Recruitment_VietNamWork extends Recruitment {
         return false;
     }
 
-    public static boolean set_job_level(String text) {
+    public boolean set_job_level(String text) {
         SelServices.oDriver.findElement(By.xpath("/html[1]/body[1]/div[8]/div[1]/div[1]/"
                 + "div[1]/div[1]/div[1]/div[1]/div[2]/div[8]/span[1]/span[1]/span[1]/span[1]")).click();
         List<WebElement> List = SelServices.oDriver.findElements(By.xpath("//*[@class='select2-results__options']/li"));
@@ -138,7 +159,7 @@ public class Recruitment_VietNamWork extends Recruitment {
 
     static int count = 0;
 
-    public static void all_print(int n) throws Exception {
+    public void all_print(int n) throws Exception {
         do {
             String MainWindow = SelServices.oDriver.getWindowHandle();
             System.out.println("Main window handle is " + MainWindow);
@@ -150,19 +171,17 @@ public class Recruitment_VietNamWork extends Recruitment {
             System.out.println("so luong: " + (list.size() + count));
             for (int j = 0; j < list.size(); j++) {
                 if (count < n) {
-                    //String v = list.get(j).getText();
-                    //ds.add(handing_string(v));
                     WebElement view = SelServices.oDriver.findElement(By.xpath("//body/div[8]/div[1]/div[1]/div[1]/div[2]/div[2]/div["
                             + (j + 1) + "]/div[1]/div[1]/div[3]/div[1]/a[1]"));
                     view.click();
                     ArrayList<String> newTab = new ArrayList<String>(SelServices.oDriver.getWindowHandles());
                     SelServices.oDriver.switchTo().window(newTab.get(1));
                     Thread.sleep(2000);
-                    String src="";
+                    String src = "";
                     List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
                     if (list1.size() > 0) {
                         System.out.println(SelServices.oDriver.findElement(By.xpath("//iframe[@id='resumeIframe']")).getAttribute("src"));
-                        src=SelServices.oDriver.findElement(By.xpath("//iframe[@id='resumeIframe']")).getAttribute("src");
+                        src = SelServices.oDriver.findElement(By.xpath("//iframe[@id='resumeIframe']")).getAttribute("src");
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     } else {
@@ -170,7 +189,7 @@ public class Recruitment_VietNamWork extends Recruitment {
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     }
-                    String v = list.get(j).getText()+"\\r?\\n"+src;
+                    String v = list.get(j).getText() + "\\r?\\n" + src;
                     Recruitment.lstCandidates.add(handing_string(v));
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
                     js.executeScript("arguments[0].scrollIntoView();", view);
@@ -187,8 +206,8 @@ public class Recruitment_VietNamWork extends Recruitment {
         } while (count < n);
     }
 
-    public static Candidate handing_string(String str) {
-        String name = "", pos = "", company = "", year = "", salary = "", location = "",link="";
+    public Candidate handing_string(String str) {
+        String name = "", pos = "", company = "", year = "", salary = "", location = "", link = "";
         String[] lines = str.split("\\r?\\n");
         for (int i = 0; i < lines.length; i++) {
             name = lines[0];
@@ -205,32 +224,58 @@ public class Recruitment_VietNamWork extends Recruitment {
             if (lines[i].equalsIgnoreCase("Locations:")) {
                 location = lines[i + 1];
             }
-            link=lines[lines.length-1];
+            link = lines[lines.length - 1];
         }
         Candidate c = new Candidate(name, pos, company, year, salary, location, link);
         return c;
     }
+
+    public void show() {       
+        for (Candidate c : Recruitment.lstCandidates) {
+            System.out.println(c.toString());
+        }
+    }
+
+    public void Close() {
+        SelServices.oDriver.close();
+    }
+
     @Override
     public List<Candidate> Filter() {
+        if (NavigateTome()) {
+            if (Login()) {
+                if (clicksearch()) {
+                    //set_categori("IT - Software");
+                    Recruitment.lstCandidates = new ArrayList<>();
+                    try {
+                        all_print(2);
+                    } catch (Exception ex) {
+                        Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    show();
+                }
+            }
+        }    
         //Step 1: check page vietnamwork
-        Navigate();
-        //Step 2: check login or not
-        if (Login() == true) {
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Logged in");
-        }
+//        NavigateTome();
+//        //Step 2: check login or not
+//        if (Login() == true) {
+//            System.out.println("Login successful");
+//        } else {
+//            System.out.println("Logged in");
+//        }
         //Step 3: click search candidate
-        if (existsElementbyxpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")) {
-            clicksearch();
-        }
-        Recruitment.lstCandidates= new ArrayList<>();
-        try {
-            all_print(2);
-        } catch (Exception ex) {
-            Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return Recruitment.lstCandidates;
+//        if (existsElementbyxpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")) {
+//            clicksearch();
+//        }
+//        Recruitment.lstCandidates = new ArrayList<>();
+//        try {
+//            all_print(2);
+//        } catch (Exception ex) {
+//            Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return Recruitment.lstCandidates;
+        return null;
     }
 
 }

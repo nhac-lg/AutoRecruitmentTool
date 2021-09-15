@@ -28,7 +28,7 @@ public class Utils {
 
     public static Recruiter find(String url_find) {
         for (Recruiter re : Information.lstRecruiter) {
-            if (re.getURL().contains(url_find)) {
+            if (re.getName().equalsIgnoreCase(url_find)) {
                 return re;
             }
         }
@@ -60,11 +60,12 @@ public class Utils {
                 //System.out.println("\nNode Name :" + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
+                    String source=eElement.getElementsByTagName("name").item(0).getTextContent();
                     String url = eElement.getElementsByTagName("url").item(0).getTextContent();
                     String acc = eElement.getElementsByTagName("account").item(0).getTextContent();
                     String pass = eElement.getElementsByTagName("password").item(0).getTextContent();
                     Account a = new Account(acc, pass);
-                    Recruiter r = new Recruiter(url, a);
+                    Recruiter r = new Recruiter(source, url, a);
 
                     Information.lstRecruiter.add(r);
                 }

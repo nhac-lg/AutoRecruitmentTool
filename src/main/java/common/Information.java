@@ -13,6 +13,7 @@ import java.util.*;
  * @author Eagle
  */
 public class Information {
+    public static String source="vietnamwork";
     public static String Browser =""; 
     public static String User =""; 
     public static String Pass =""; 
