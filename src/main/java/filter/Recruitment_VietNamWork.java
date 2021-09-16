@@ -5,9 +5,7 @@
  */
 package filter;
 
-import com.google.common.base.CharMatcher;
 import common.Information;
-import common.Utils;
 import dataobjects.Candidate;
 import dataobjects.Recruiter;
 import java.util.ArrayList;
@@ -84,8 +82,10 @@ public class Recruitment_VietNamWork extends Recruitment {
     }
 
     public boolean clicksearch() {
-        //span[contains(text(),'Close')]
-        SelServices.oDriver.findElement(By.xpath("//span[contains(text(),'Close')]")).click();
+        WebDriverWait wait = new WebDriverWait(SelServices.oDriver, 10);
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='close']//span[@aria-hidden='true'][normalize-space()='×']")));
+        SelServices.oDriver.findElement(By.xpath("//button[@class='close']//span[@aria-hidden='true'][normalize-space()='×']")).click();
         if (existsElementbyxpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")) {
             SelServices.oDriver.findElement(By.xpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")).click();
             return true;
@@ -190,12 +190,14 @@ public class Recruitment_VietNamWork extends Recruitment {
                         SelServices.oDriver.switchTo().window(MainWindow);
                     }
                     String v = list.get(j).getText() + "\\r?\\n" + src;
-                    Recruitment.lstCandidates.add(handing_string(v));
+                    if (handing_string(v) != null) {
+                        Recruitment.lstCandidates.add(handing_string(v));
+                        count++;
+                    }
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
                     js.executeScript("arguments[0].scrollIntoView();", view);
                     Thread.sleep(2000);
                 }
-                count++;
             }
             JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
             js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -209,29 +211,34 @@ public class Recruitment_VietNamWork extends Recruitment {
     public Candidate handing_string(String str) {
         String name = "", pos = "", company = "", year = "", salary = "", location = "", link = "";
         String[] lines = str.split("\\r?\\n");
+        Candidate c = null;
         for (int i = 0; i < lines.length; i++) {
             name = lines[0];
-            pos = lines[1];
-            if (lines[i].equalsIgnoreCase("Latest company:")) {
-                company = lines[i + 1];
+            if (lines[1].equalsIgnoreCase("   Viewed")) {
+                c = null;
+            } else {
+                pos = lines[1];
+                if (lines[i].equalsIgnoreCase("Latest company:")) {
+                    company = lines[i + 1];
+                }
+                if (lines[i].equalsIgnoreCase("Years of experience: ")) {
+                    year = lines[i + 1];
+                }
+                if (lines[i].equalsIgnoreCase("Expected salary:")) {
+                    salary = lines[i + 1];
+                }
+                if (lines[i].equalsIgnoreCase("Locations:")) {
+                    location = lines[i + 1];
+                }
+                c = new Candidate(name, pos, company, year, salary, location, link);
             }
-            if (lines[i].equalsIgnoreCase("Years of experience: ")) {
-                year = lines[i + 1];
-            }
-            if (lines[i].equalsIgnoreCase("Expected salary:")) {
-                salary = lines[i + 1];
-            }
-            if (lines[i].equalsIgnoreCase("Locations:")) {
-                location = lines[i + 1];
-            }
-            link = lines[lines.length - 1];
         }
-        Candidate c = new Candidate(name, pos, company, year, salary, location, link);
+
         return c;
     }
 
-    public void show() {       
-        for (Candidate c : Recruitment.lstCandidates) {
+    public void show() {
+        for(Candidate c : Recruitment.lstCandidates) {
             System.out.println(c.toString());
         }
     }
@@ -255,27 +262,9 @@ public class Recruitment_VietNamWork extends Recruitment {
                     show();
                 }
             }
-        }    
-        //Step 1: check page vietnamwork
-//        NavigateTome();
-//        //Step 2: check login or not
-//        if (Login() == true) {
-//            System.out.println("Login successful");
-//        } else {
-//            System.out.println("Logged in");
-//        }
-        //Step 3: click search candidate
-//        if (existsElementbyxpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]")) {
-//            clicksearch();
-//        }
-//        Recruitment.lstCandidates = new ArrayList<>();
-//        try {
-//            all_print(2);
-//        } catch (Exception ex) {
-//            Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return Recruitment.lstCandidates;
-        return null;
+        }
+        return Recruitment.lstCandidates;
+        //return null;
     }
 
 }
