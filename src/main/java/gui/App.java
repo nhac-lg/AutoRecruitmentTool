@@ -18,11 +18,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("App.fxml"));
         URL url = new File("src/main/java/gui/App.fxml").toURI().toURL();
+        URL css = new File("src/main/java/gui/app.css").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("Candidate management");
-        primaryStage.setScene(new Scene(root, 1400, 800));
+        Scene main = new Scene(root, 1350, 620);
+        main.getStylesheets().add(css.toExternalForm());
+        primaryStage.setScene(main);
         primaryStage.show();
     }
 
