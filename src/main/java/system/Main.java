@@ -9,7 +9,6 @@ import common.Information;
 import common.Utils;
 import database.DBServer;
 import filter.Recruitment;
-import filter.Recruitment_Local;
 import filter.Recruitment_VietNamWork;
 import selenium.SelServices;
 /**
@@ -38,13 +37,6 @@ public class Main {
     private static void InitApp(){
         Utils.ReadXML();
         System.out.println(Information.lstRecruiter.size());
-//        if(Utils.find("vietnamwork")!=null){
-//            Information.Browser=Utils.find("vietnamwork").getURL();
-//            Information.User=Utils.find("vietnamwork").getoAccount().getAccName();
-//            Information.Pass=Utils.find("vietnamwork").getoAccount().getPW();
-//        }else{
-//            System.out.println("Recruiter doesn't exits");
-//        }
     }
     private static void connectDB(String username, String password, String db_url){
         DBServer db= new DBServer();
