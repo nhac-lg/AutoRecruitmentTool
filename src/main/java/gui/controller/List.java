@@ -3,64 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dataobjects.GUIModel;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
  *
  * @author nyak
  */
-public class Controller implements Initializable {
+public class List implements Initializable {
 
     @FXML
-    private TableView<Model> tbData;
+    private TableView<GUIModel> tbData;
     @FXML
-    public TableColumn<Model, Integer> id;
+    public TableColumn<GUIModel, Integer> id;
     @FXML
-    public TableColumn<Model, String> name;
+    public TableColumn<GUIModel, String> name;
     @FXML
-    public TableColumn<Model, String> job;
+    public TableColumn<GUIModel, String> job;
     @FXML
-    public TableColumn<Model, Integer> experience;
+    public TableColumn<GUIModel, Integer> experience;
     @FXML
-    public TableColumn<Model, String> cv_link;
+    public TableColumn<GUIModel, String> cv_link;
     @FXML
-    public TableColumn<Model, String> skills;
+    public TableColumn<GUIModel, String> skills;
     @FXML
-    public TableColumn<Model, String> status;
+    public TableColumn<GUIModel, String> status;
     @FXML
-    public TableColumn<Model, String> comment;
+    public TableColumn<GUIModel, String> comment;
     @FXML
-    public TableColumn<Model, String> user;
+    public TableColumn<GUIModel, String> user;
     @FXML
-    public TableColumn<Model, String> label;
+    public TableColumn<GUIModel, String> label;
     @FXML
-    public TableColumn<Model, String> cv_date;
+    public TableColumn<GUIModel, String> cv_date;
     @FXML
-    public TableColumn<Model, String> can_location;
+    public TableColumn<GUIModel, String> can_location;
     @FXML
-    public TableColumn<Model, String> referral;
+    public TableColumn<GUIModel, String> referral;
     @FXML
-    public TableColumn<Model, Integer> phone;
+    public TableColumn<GUIModel, Integer> phone;
 
 
-    public Controller()
-    {
+    public List() {
 
     }
 
@@ -80,14 +77,14 @@ public class Controller implements Initializable {
         can_location.setCellValueFactory(new PropertyValueFactory<>("can_location"));
         referral.setCellValueFactory(new PropertyValueFactory<>("referral"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        tbData.setItems(models);
+        tbData.setItems(GUIModels);
     }
 
-    private ObservableList<Model> models = FXCollections.observableArrayList(
-            new Model(1,"Nhac", "Developer", 3, "google", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 ),
-            new Model(2,"Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 ),
-            new Model(3,"Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 ),
-            new Model(4,"Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 )
+    private ObservableList<GUIModel> GUIModels = FXCollections.observableArrayList(
+            new GUIModel(1, "Nhac", "Developer", 3, "google", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(2, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(3, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
     );
 
     public void HandleSearchOnline(MouseEvent mouseEvent) {
@@ -97,7 +94,7 @@ public class Controller implements Initializable {
     }
 
     public void HandleSearchDB(MouseEvent mouseEvent) {
-        if (mouseEvent.isPrimaryButtonDown()){
+        if (mouseEvent.isPrimaryButtonDown()) {
 
         }
     }
