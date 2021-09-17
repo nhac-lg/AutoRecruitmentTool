@@ -21,7 +21,7 @@ public class Main {
         InitApp();
         SelServices se= new SelServices();
         String src="vietnamwork";
-        //choose source trên GUI 
+        //choose source on GUI 
         Recruitment re;
         if(src.equalsIgnoreCase("vietnamwork")){
             re= new Recruitment_VietNamWork();
@@ -29,9 +29,6 @@ public class Main {
         }else{
             System.out.println("no find");
         }
-        //Recruitment re= new Recruitment_VietNamWork();
-        //re.Filter();
-        //System.out.println("so luong: "+re.Filter().size());
     }
     
     private static void InitApp(){
