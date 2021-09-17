@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,4 +89,16 @@ public class Controller implements Initializable {
             new Model(3,"Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 ),
             new Model(4,"Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890 )
     );
+
+    public void HandleSearchOnline(MouseEvent mouseEvent) {
+    }
+
+    public void HandleSearchFolder(MouseEvent mouseEvent) {
+    }
+
+    public void HandleSearchDB(MouseEvent mouseEvent) {
+        if (mouseEvent.isPrimaryButtonDown()){
+
+        }
+    }
 }
