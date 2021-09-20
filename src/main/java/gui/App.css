@@ -11,6 +11,16 @@
     -fx-text-fill: white;
 }
 
+.combo-box .list-view .list-cell {
+    -fx-text-fill: black;
+}
+
+.combo-box-base:editable > .arrow-button {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-content-display: RIGHT;
+}
+
 .accordion > .titled-pane {
     -fx-text-fill: white;
 }
@@ -19,6 +29,7 @@
     -fx-background-color: navy;
 }
 
+<<<<<<< HEAD
 .pane_detail{
     -fx-background-radius: 50px;
 }
@@ -31,4 +42,17 @@
     -fx-font-size: 14px;
     -fx-font-family:"System";
     -fx-font-style: Italic;
+=======
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: lightBlue;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: lightBlue;
+}
+.table-view .column-header {
+    -fx-background-color: lightBlue;
+>>>>>>> 44a65910d6ab8a8503ad0ea11f914d16342f2f2b
 }
