@@ -18,3 +18,17 @@
 .accordion > .titled-pane > .title {
     -fx-background-color: navy;
 }
+
+.pane_detail{
+    -fx-background-radius: 50px;
+}
+
+.img{
+    -fx-background-radius: 150px;
+}
+
+.input-text{
+    -fx-font-size: 14px;
+    -fx-font-family:"System";
+    -fx-font-style: Italic;
+}
