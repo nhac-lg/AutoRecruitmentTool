@@ -27,7 +27,7 @@ import objmodels.GUIModel;
  */
 public class MainUI implements Initializable {
 
-    //Declare combo Controls---------------------------
+    //Declare comboboc Controls---------------------------
     @FXML
     private ComboBox<String> cbTitles;
    
