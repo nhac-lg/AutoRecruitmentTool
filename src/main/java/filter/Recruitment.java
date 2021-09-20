@@ -5,8 +5,8 @@
  */
 package filter;
 
-import dataobjects.Candidate;
-import dataobjects.Recruiter;
+import objmodels.Candidate;
+import objmodels.Recruiter;
 import java.util.*;
 import java.util.Date;
 

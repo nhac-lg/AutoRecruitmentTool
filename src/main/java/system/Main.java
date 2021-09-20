@@ -7,9 +7,12 @@ package system;
 
 import common.Information;
 import common.Utils;
-import database.DBServer;
+import datacenter.DBServer;
+import datacenter.Data;
 import filter.Recruitment;
 import filter.Recruitment_VietNamWork;
+import gui.App;
+import javafx.application.Application;
 import selenium.SelServices;
 /**
  *
@@ -17,31 +20,16 @@ import selenium.SelServices;
  */
 public class Main {
     public static void main(String args[]){
-        System.out.println("Hello application !!!!");
+        
         InitApp();
-        SelServices se= new SelServices();
-        String src="vietnamwork";
-        //choose source on GUI 
-        Recruitment re;
-        if(src.equalsIgnoreCase("vietnamwork")){
-            re= new Recruitment_VietNamWork();
-            re.Filter();
-        }else{
-            System.out.println("no find");
-        }
+        Application.launch(App.class, args);
+        
     }
     
     private static void InitApp(){
-        Utils.ReadXML();
-        System.out.println(Information.lstRecruiter.size());
+        //Utils.ReadXML();
+        Data.loadDefinitionData();
     }
-    private static void connectDB(String username, String password, String db_url){
-        DBServer db= new DBServer();
-        db.setDatabase(username, password, db_url);
-        if(db.connect()){
-
-        }else{
-            System.out.println("Database connect failed");
-        }
-    }
+    
+ 
 }

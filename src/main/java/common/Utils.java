@@ -5,8 +5,8 @@
  */
 package common;
 
-import dataobjects.Account;
-import dataobjects.Recruiter;
+import objmodels.Account;
+import objmodels.Recruiter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -33,6 +33,20 @@ public class Utils {
             }
         }
         return null;
+    }
+    //get current path of the app
+    public static String getCurrentPath(){
+        return "";
+    }
+    
+    //Read file configuration XML file to get information as below
+    //. List of rescruiter & assign Information.lstRecruiter 
+    //. List of CV uodate & assign to Storege.lstCVUpdate
+    //. List of Location & assign to Storage.lstLocation 
+    //. List of Title & assign to Storage.lstTitle
+    
+    public void readConfigXML(){
+        
     }
 
     public static void ReadXML() {

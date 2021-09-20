@@ -5,7 +5,7 @@
  */
 package common;
 
-import dataobjects.Recruiter;
+import objmodels.Recruiter;
 import java.util.*;
 
 /**

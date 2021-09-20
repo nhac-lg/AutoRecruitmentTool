@@ -5,26 +5,34 @@
  */
 package gui.controller;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import dataobjects.GUIModel;
-import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import objmodels.GUIModel;
 
 /**
  * FXML Controller class
  *
- * @author nyak
+ * @author Eagle
  */
-public class List implements Initializable {
+public class MainUI implements Initializable {
 
+    //Declare combo Controls---------------------------
+    @FXML
+    private ComboBox<String> cbTitles;
+   
+    
+    //TDeclare able view ------------------------
     @FXML
     private TableView<GUIModel> tbData;
     @FXML
@@ -55,14 +63,25 @@ public class List implements Initializable {
     public TableColumn<GUIModel, String> referral;
     @FXML
     public TableColumn<GUIModel, Integer> phone;
-
-
-    public List() {
-
-    }
-
+    /**
+     * Initializes the controller class.
+     */
+    // Data --------------------------------------------------------------
+     private ObservableList<GUIModel> GUIModels = FXCollections.observableArrayList(
+            new GUIModel(1, "Nhac", "Developer", 3, "google", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(2, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(3, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+            new GUIModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
+    );
+    private ObservableList<String> lstAlls = FXCollections.observableArrayList("ConDien", "conkhung", "conMad");
+    //----------------------------------------------------------------------- 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle rb) {
+        initFilterComboxes();
+        initTableView();
+    }    
+
+    private void initTableView(){
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         job.setCellValueFactory(new PropertyValueFactory<>("job"));
@@ -79,23 +98,41 @@ public class List implements Initializable {
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         tbData.setItems(GUIModels);
     }
-
-    private ObservableList<GUIModel> GUIModels = FXCollections.observableArrayList(
-            new GUIModel(1, "Nhac", "Developer", 3, "google", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
-            new GUIModel(2, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
-            new GUIModel(3, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
-            new GUIModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
-    );
-
-    public void HandleSearchOnline(MouseEvent mouseEvent) {
+    
+    private void initFilterComboxes(){
+          cbTitles.setItems(lstAlls);
+          
+    }
+    
+    private void LoadData(){
+        tbData.setItems(GUIModels);
+    }
+ 
+    private void RefreshUI(){
+         
+   
+         tbData.refresh();
+    }
+    //Action control -------------------------------------------------- 
+  
+    @FXML
+    void HandleSearchDB(MouseEvent event) {
+          System.out.println("HandleSearchDB!");
+          RefreshUI();
     }
 
-    public void HandleSearchFolder(MouseEvent mouseEvent) {
+    @FXML
+    void HandleSearchFolder(MouseEvent event) {
+          System.out.println("HandleSearchFolder!");
     }
 
-    public void HandleSearchDB(MouseEvent mouseEvent) {
-        if (mouseEvent.isPrimaryButtonDown()) {
-
-        }
+    @FXML
+    void HandleSearchOnline(MouseEvent event) {
+         System.out.println("HandleSearchOnline!");
     }
+   
+
+     
+
+    
 }

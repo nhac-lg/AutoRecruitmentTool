@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package datacenter;
 
-import dataobjects.*;
+import objmodels.User;
+import objmodels.Candidate;
 
 import java.sql.*;
+import objmodels.Account;
 
 /**
  * @author Eagle
@@ -15,14 +17,19 @@ import java.sql.*;
 public class DBServer {
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private Connection connection;
-    private static String user;
-    private static String password;
-    private static String DB_URL;
+    private Account Acc; 
+    private String DB_URL;
+    
+    public DBServer(){}
+    public DBServer(Account oAcc, String url){
+        Acc = oAcc; 
+        DB_URL = url;
+    }
 
     public boolean connect() {
         try {
             Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, user, password);
+            connection = DriverManager.getConnection(DB_URL, Acc.AccName, Acc.PW);
             return true;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -36,12 +43,6 @@ public class DBServer {
 
     public Connection getConnection() {
         return connection;
-    }
-
-    public void setDatabase(String user, String password, String DB_URL) {
-        DBServer.user = user;
-        DBServer.password = password;
-        DBServer.DB_URL = DB_URL;
     }
 
     public ResultSet GetCandidate(Candidate oCandidate) {

@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL url = new File("src/main/java/gui/page/List.fxml").toURI().toURL();
+        URL url = new File("src/main/java/gui/page/MainUI.fxml").toURI().toURL();
         URL css = new File("src/main/java/gui/App.css").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("Candidate management");

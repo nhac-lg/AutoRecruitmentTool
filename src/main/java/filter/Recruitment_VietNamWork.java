@@ -6,8 +6,8 @@
 package filter;
 
 import common.Information;
-import dataobjects.Candidate;
-import dataobjects.Recruiter;
+import objmodels.Candidate;
+import objmodels.Recruiter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
