@@ -1,14 +1,11 @@
 package gui;
 
-import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -18,7 +15,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        URL url = new File("src/main/java/gui/page/MainUI.fxml").toURI().toURL();
+        //URL url = new File("src/main/java/gui/page/MainUI.fxml").toURI().toURL();
+        URL url = new File("src/main/java/gui/page/DetailCV.fxml").toURI().toURL();
+        System.out.println(url);
         URL css = new File("src/main/java/gui/App.css").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("Candidate management");
