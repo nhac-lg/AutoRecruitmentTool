@@ -30,7 +30,8 @@
 }
 
 .pane_detail{
-    -fx-background-radius: 50px;
+/*    -fx-border-style:solid;*/
+    -fx-background-color: #e6e6fa;
 }
 
 .img{
@@ -54,4 +55,9 @@
 }
 .table-view .column-header {
     -fx-background-color: lightBlue;
+}
+
+.pane_status{
+    -fx-background-color: #e6e6fa;
+/*    -fx-border-style:solid;*/
 }
