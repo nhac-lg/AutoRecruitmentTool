@@ -6,6 +6,8 @@
 package filter;
 
 import common.Information;
+import datacenter.Data;
+import gui.controller.MainUI;
 import objmodels.Candidate;
 import objmodels.Recruiter;
 import java.util.ArrayList;
@@ -46,15 +48,17 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     By list_resume = By.xpath("//div[@class='list-resume']/div/div/div/div[2]");
     By link_src = By.xpath("//iframe[@id='resumeIframe']");
     By next_page = By.xpath("//li[@class='page-item page-nav page-next']//a[@class='page-link']/i");
-    By input_year_from= By.xpath("//input[@class='rs-control year-from']");
-    By input_year_to= By.xpath("//input[@class='rs-control year-to']");
+    By input_year_from = By.xpath("//input[@class='rs-control year-from']");
+    By input_year_to = By.xpath("//input[@class='rs-control year-to']");
+    By gender = By.xpath("//div[@class='field field-gender-relationship']/span");
+    By lasted_upd = By.xpath("//div[@class='field field-update-resume']/span");
 
     public Recruitment_VietNamWork() {
         Recruiter_vnwork = vnwork(Information.source);
     }
 
     private Recruiter vnwork(String vnwork) {
-        for (Recruiter re : Information.lstRecruiter) {
+        for (Recruiter re : Data.lstRecruiters) {
             if (re.getName().equalsIgnoreCase(vnwork)) {
                 return re;
             }
@@ -80,7 +84,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
         return true;
     }
 
-    public boolean NavigateTome() {
+    public boolean NavigateToMe() {
         String title = "VietnamWorks - Top employment and recruitment website in Vietnam.";
         SelServices.oDriver.manage().window().maximize();
         SelServices.oDriver.get(Recruiter_vnwork.getURL());
@@ -198,19 +202,23 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                     SelServices.oDriver.switchTo().window(newTab.get(1));
                     Thread.sleep(2000);
                     String src = "";
+                    String Gender, Lasted_upd, sex;
                     List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
+                    sex=SelServices.oDriver.findElement(gender).getText();
+                    Gender = "gender" + "\r\n" + handle_gender(sex);
+                    Lasted_upd = "latest update" + "\r\n" + SelServices.oDriver.findElement(lasted_upd).getText().substring(15, 25);
                     if (list1.size() > 0) {
-                        src = SelServices.oDriver.findElement(link_src).getAttribute("src");
+                        src = "link src" + "\r\n" + SelServices.oDriver.findElement(link_src).getAttribute("src");
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     } else {
-                        src="no src";
+                        src = "link src" + "\r\n" + "no src";
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     }
-                    String v = list.get(j).getText() + "\r\n" + "link src" + "\r\n" + src;
+                    String v = list.get(j).getText() + "\r\n" + src + "\r\n" + Gender + "\r\n" + Lasted_upd;
                     if (handing_no_viewed(v) != null) {
-                        Recruitment_Online.lstCandidates.add(handing_no_viewed(v));
+                        Data.lstCandidates.add(handing_no_viewed(v));
                         count++;
                     }
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
@@ -242,18 +250,22 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                     SelServices.oDriver.switchTo().window(newTab.get(1));
                     Thread.sleep(2000);
                     String src = " ";
+                    String Gender, Lasted_upd,sex;
                     List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
+                    sex=SelServices.oDriver.findElement(gender).getText();
+                    Gender = "gender" + "\r\n" + handle_gender(sex);
+                    Lasted_upd = "latest update" + "\r\n" + SelServices.oDriver.findElement(lasted_upd).getText().substring(15, 25);
                     if (list1.size() > 0) {
-                        src = SelServices.oDriver.findElement(link_src).getAttribute("src");
+                        src = "link src" + "\r\n" + SelServices.oDriver.findElement(link_src).getAttribute("src");
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     } else {
-                        src="no src";
+                        src = "link src" + "\r\n" + "no src";
                         SelServices.oDriver.close();
                         SelServices.oDriver.switchTo().window(MainWindow);
                     }
-                    String v = list.get(j).getText() + "\r\n" + "link src" + "\r\n" + src;
-                    Recruitment_Online.lstCandidates.add(handing_viewd(v));
+                    String v = list.get(j).getText() + "\r\n" + src + "\r\n" + Gender + "\r\n" + Lasted_upd;
+                    Data.lstCandidates.add(handing_viewd(v));
                     count++;
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
                     js.executeScript("arguments[0].scrollIntoView();", view);
@@ -269,12 +281,13 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     }
 
     public Candidate handing_viewd(String str) {
-        String name = "", pos = "", company = "", year = "", salary = "", location = "", link = "";
+        String name = "", jobtitle = "", company = "", year = "", salary = "", location = "", link = "";
+        String gender = "", latest_upd = "";
         String[] lines = str.split("\\r?\\n");
         Candidate c = null;
         for (int i = 0; i < lines.length; i++) {
             name = lines[0];
-            pos = lines[1];
+            jobtitle = lines[1];
             if (lines[i].equalsIgnoreCase("Latest company:")) {
                 company = lines[i + 1];
             }
@@ -287,16 +300,23 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (lines[i].equalsIgnoreCase("Locations:")) {
                 location = lines[i + 1];
             }
-            if (lines[i].equalsIgnoreCase("link src")) { 
-                link = lines[i+1];    
+            if (lines[i].equalsIgnoreCase("link src")) {
+                link = lines[i + 1];
             }
-            //c = new Candidate(name, pos, company, year, salary, location, link);
+            if (lines[i].equalsIgnoreCase("gender")) {
+                gender = lines[i + 1];
+            }
+            if (lines[i].equalsIgnoreCase("latest update")) {
+                latest_upd = lines[i + 1];
+            }
+            c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
         }
         return c;
     }
 
     public Candidate handing_no_viewed(String str) {
-        String name = "", pos = "", company = "", year = "", salary = "", location = "", link = "";
+        String name = "", jobtitle = "", company = "", year = "", salary = "", location = "", link = "";
+        String gender = "", latest_upd = "";
         String[] lines = str.split("\\r?\\n");
         Candidate c = null;
         for (int i = 0; i < lines.length; i++) {
@@ -304,7 +324,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (lines[1].equalsIgnoreCase("   Viewed")) {
                 c = null;
             } else {
-                pos = lines[1];
+                jobtitle = lines[1];
                 if (lines[i].equalsIgnoreCase("Latest company:")) {
                     company = lines[i + 1];
                 }
@@ -318,16 +338,29 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                     location = lines[i + 1];
                 }
                 if (lines[i].equalsIgnoreCase("link src")) {
-                    link = lines[i+1];
+                    link = lines[i + 1];
                 }
+                if (lines[i].equalsIgnoreCase("gender")) {
+                    gender = lines[i + 1];
+                }
+                if (lines[i].equalsIgnoreCase("latest update")) {
+                    latest_upd = lines[i + 1];
+                }
+                c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
                 //c = new Candidate(name, pos, company, year, salary, location, link);
             }
         }
         return c;
     }
-
+    
+    public String handle_gender(String gender){
+        String sex;
+        String[] parts = gender.split("\\s");
+        sex=parts[1];
+        return sex;
+    }
     public void show() {
-        for (Candidate c : Recruitment_Online.lstCandidates) {
+        for (Candidate c : Data.lstCandidates) {
             System.out.println(c.toString());
         }
     }
@@ -338,11 +371,11 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
 
     @Override
     public List<Candidate> Filter() {
-        if (NavigateTome()) {
+        if (NavigateToMe()) {
             if (Login()) {
                 if (clicksearch()) {
                     //set_categori("IT - Software");
-                    Recruitment_Online.lstCandidates = new ArrayList<>();
+                    Data.lstCandidates = new ArrayList<>();
                     String skip_viewed = "";
                     //checkbox viewed no select
                     if (skip_viewed.isEmpty()) {
@@ -362,7 +395,8 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 }
             }
         }
-        return Recruitment_Online.lstCandidates;
+        return  Data.lstCandidates;
+        //return Recruitment_Online.lstCandidates;
         //return null;
     }
 

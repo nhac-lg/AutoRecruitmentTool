@@ -10,7 +10,6 @@ package objmodels;
  * @author Eagle
  */
 public class Candidate {
-    public String id;
     public String name;
     public String job_title;
     public String latest_cpmpany;
@@ -26,14 +25,6 @@ public class Candidate {
     public String status;
     public String skill;
     public String comment;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -158,8 +149,7 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(String id, String name, String job_title, String latest_cpmpany, String exp_year, String salary, String location, String src_link, String gender, String phone, String referral, String latest_upd, String label, String status, String skill, String comment) {
-        this.id = id;
+    public Candidate(String name, String job_title, String latest_cpmpany, String exp_year, String salary, String location, String src_link, String gender, String phone, String referral, String latest_upd, String label, String status, String skill, String comment) {  
         this.name = name;
         this.job_title = job_title;
         this.latest_cpmpany = latest_cpmpany;
@@ -179,8 +169,7 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return "Candidate{" + "id=" + id + ", name=" + name + ", job_title=" + job_title + ", latest_cpmpany=" + latest_cpmpany + ", exp_year=" + exp_year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + ", gender=" + gender + ", phone=" + phone + ", referral=" + referral + ", latest_upd=" + latest_upd + ", label=" + label + ", status=" + status + ", skill=" + skill + ", comment=" + comment + '}';
+        return "Candidate{" + "name=" + name + ", job_title=" + job_title + ", latest_cpmpany=" + latest_cpmpany + ", exp_year=" + exp_year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + ", gender=" + gender + ", phone=" + phone + ", referral=" + referral + ", latest_upd=" + latest_upd + ", label=" + label + ", status=" + status + ", skill=" + skill + ", comment=" + comment + '}';
     }
-    
     
 }

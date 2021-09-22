@@ -5,6 +5,7 @@
  */
 package common;
 
+import datacenter.Data;
 import objmodels.Account;
 import objmodels.Recruiter;
 import java.io.IOException;
@@ -80,8 +81,9 @@ public class Utils {
                     String pass = eElement.getElementsByTagName("password").item(0).getTextContent();
                     Account a = new Account(acc, pass);
                     Recruiter r = new Recruiter(source, url, a);
-
-                    Information.lstRecruiter.add(r);
+                    
+                    Data.lstRecruiters.add(r);
+                    //Information.lstRecruiter.add(r);
                 }
             }
         } catch (ParserConfigurationException ex) {

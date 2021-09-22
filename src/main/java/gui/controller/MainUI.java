@@ -6,6 +6,8 @@
 package gui.controller;
 
 import datacenter.Data;
+import filter.Recruitment_Online;
+import filter.Recruitment_VietNamWork;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
@@ -42,10 +44,13 @@ public class MainUI implements Initializable {
     private ComboBox<String> cbEmployerOnlineSearch;
     @FXML
     private TextField txtSearchKeywordOnlineSearch;
+    public static String textsearch;
     @FXML
     private TextField txtExperienceFromOnlineSearch;
+    public static String txtExpFrom;
     @FXML
     private TextField txtExperienceToOnlineSearch;
+    public static String txtExpTo;
     @FXML
     private ComboBox<String> cbLastResumeUpdateOnlineSearch;
     @FXML
@@ -109,6 +114,7 @@ public class MainUI implements Initializable {
     //----------------------------------------------------------------------- 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        LoadData();
         initFilterComboxes();
         initTableView();
 
@@ -286,13 +292,16 @@ public class MainUI implements Initializable {
         lstLocations = FXCollections.observableList(Data.lstLocators);
         lstLabels = FXCollections.observableList(Data.lstLabels);
         lstReferrals = FXCollections.observableList(Data.lstReferrals);
-        listRecruiterNames = null;
+        //listRecruiterNames = null;
+        listRecruiterNames = FXCollections.observableList(Data.lstRecruiterNames);
         lstResumeUpd = FXCollections.observableList(Data.lstResumeUpdNames);
         tbData.setItems(GUIModels);
     }
 
     private void initFilterComboxes() {
         cbTitles.setItems(lstTitles);
+        cbEmployerOnlineSearch.setItems(listRecruiterNames);  
+        
     }
 
     private void RefreshUI() {
@@ -314,6 +323,11 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
+        Recruitment_Online orecruiter_onl;
+        if(cbEmployerOnlineSearch.getSelectionModel().getSelectedItem().equalsIgnoreCase("VietNamWork")){
+            orecruiter_onl= new Recruitment_VietNamWork();
+            orecruiter_onl.Filter();
+        }
     }
 
 }

@@ -5,12 +5,8 @@
  */
 package system;
 
-import common.Information;
 import common.Utils;
-import datacenter.DBServer;
 import datacenter.Data;
-import filter.Recruitment_Online;
-import filter.Recruitment_VietNamWork;
 import gui.App;
 import javafx.application.Application;
 import selenium.SelServices;
@@ -20,15 +16,15 @@ import selenium.SelServices;
  */
 public class Main {
     public static void main(String args[]){
-        
         InitApp();
+        //new SelServices();
         Application.launch(App.class, args);
-        
     }
     
     private static void InitApp(){
-        //Utils.ReadXML();
+        Utils.ReadXML();
         Data.loadDefinitionData();
+       
     }
     
  
