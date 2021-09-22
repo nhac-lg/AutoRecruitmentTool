@@ -10,19 +10,31 @@ package objmodels;
  * @author Eagle
  */
 public class Candidate {
-    public String name, position, company, year, salary, location;
-    public String job_level, gender, src_link;
+    public String id;
+    public String name;
+    public String job_title;
+    public String latest_cpmpany;
+    public String exp_year;
+    public String salary;
+    public String location;
+    public String src_link;
+    public String gender;
+    public String phone;
     public String referral;
+    public String latest_upd;
+    public String label;
+    public String status;
+    public String skill;
+    public String comment;
 
-    public String getReferral() {
-        return referral;
+    public String getId() {
+        return id;
     }
 
-    public void setReferral(String val) {
-        this.referral = val;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    
     public String getName() {
         return name;
     }
@@ -31,28 +43,28 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getPosition() {
-        return position;
+    public String getJob_title() {
+        return job_title;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setJob_title(String job_title) {
+        this.job_title = job_title;
     }
 
-    public String getCompany() {
-        return company;
+    public String getLatest_cpmpany() {
+        return latest_cpmpany;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setLatest_cpmpany(String latest_cpmpany) {
+        this.latest_cpmpany = latest_cpmpany;
     }
 
-    public String getYear() {
-        return year;
+    public String getExp_year() {
+        return exp_year;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setExp_year(String exp_year) {
+        this.exp_year = exp_year;
     }
 
     public String getSalary() {
@@ -79,22 +91,96 @@ public class Candidate {
         this.src_link = src_link;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getReferral() {
+        return referral;
+    }
+
+    public void setReferral(String referral) {
+        this.referral = referral;
+    }
+
+    public String getLatest_upd() {
+        return latest_upd;
+    }
+
+    public void setLatest_upd(String latest_upd) {
+        this.latest_upd = latest_upd;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public Candidate() {
     }
 
-    public Candidate(String name, String position, String company, String year, String salary, String location, String src_link) {
+    public Candidate(String id, String name, String job_title, String latest_cpmpany, String exp_year, String salary, String location, String src_link, String gender, String phone, String referral, String latest_upd, String label, String status, String skill, String comment) {
+        this.id = id;
         this.name = name;
-        this.position = position;
-        this.company = company;
-        this.year = year;
+        this.job_title = job_title;
+        this.latest_cpmpany = latest_cpmpany;
+        this.exp_year = exp_year;
         this.salary = salary;
         this.location = location;
         this.src_link = src_link;
+        this.gender = gender;
+        this.phone = phone;
+        this.referral = referral;
+        this.latest_upd = latest_upd;
+        this.label = label;
+        this.status = status;
+        this.skill = skill;
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
-        return "Candidate{" + "name=" + name + ", position=" + position + ", company=" + company + ", year=" + year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + '}';
+        return "Candidate{" + "id=" + id + ", name=" + name + ", job_title=" + job_title + ", latest_cpmpany=" + latest_cpmpany + ", exp_year=" + exp_year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + ", gender=" + gender + ", phone=" + phone + ", referral=" + referral + ", latest_upd=" + latest_upd + ", label=" + label + ", status=" + status + ", skill=" + skill + ", comment=" + comment + '}';
     }
-
+    
+    
 }

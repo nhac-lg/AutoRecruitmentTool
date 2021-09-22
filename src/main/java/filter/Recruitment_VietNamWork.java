@@ -290,7 +290,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (lines[i].equalsIgnoreCase("link src")) { 
                 link = lines[i+1];    
             }
-            c = new Candidate(name, pos, company, year, salary, location, link);
+            //c = new Candidate(name, pos, company, year, salary, location, link);
         }
         return c;
     }
@@ -320,7 +320,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 if (lines[i].equalsIgnoreCase("link src")) {
                     link = lines[i+1];
                 }
-                c = new Candidate(name, pos, company, year, salary, location, link);
+                //c = new Candidate(name, pos, company, year, salary, location, link);
             }
         }
         return c;

@@ -61,7 +61,7 @@ public class Data {
          lstRecruiterNames = lstRecruiters.stream().distinct().map(Recruiter::getName).collect(Collectors.toList());
          lstResumeUpdNames = new ArrayList<>(lstResumeUpd.keySet());
          lstReferrals  = lstCandidates.stream().distinct().map(Candidate::getReferral).collect(Collectors.toList());
-         lstTitles  = lstCandidates.stream().distinct().map(Candidate::getPosition).collect(Collectors.toList());
+         //lstTitles  = lstCandidates.stream().distinct().map(Candidate::getPosition).collect(Collectors.toList());
          
      }
     
