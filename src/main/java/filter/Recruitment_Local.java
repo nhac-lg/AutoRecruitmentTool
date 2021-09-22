@@ -9,6 +9,6 @@ package filter;
  *
  * @author Eagle
  */
-public class Recruitment_Local extends Recruitment {
+public class Recruitment_Local extends Recruitment_Online {
     
 }

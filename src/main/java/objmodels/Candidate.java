@@ -10,9 +10,19 @@ package objmodels;
  * @author Eagle
  */
 public class Candidate {
-public String name, position, company, year, salary, location;
+    public String name, position, company, year, salary, location;
     public String job_level, gender, src_link;
+    public String referral;
 
+    public String getReferral() {
+        return referral;
+    }
+
+    public void setReferral(String val) {
+        this.referral = val;
+    }
+
+    
     public String getName() {
         return name;
     }

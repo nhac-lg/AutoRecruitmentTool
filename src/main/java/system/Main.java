@@ -9,7 +9,7 @@ import common.Information;
 import common.Utils;
 import datacenter.DBServer;
 import datacenter.Data;
-import filter.Recruitment;
+import filter.Recruitment_Online;
 import filter.Recruitment_VietNamWork;
 import gui.App;
 import javafx.application.Application;

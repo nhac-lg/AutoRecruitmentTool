@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author Eagle
  */
-public class Recruitment {
+public class Recruitment_Online {
     
     public Recruiter oRecruiter; 
     public String JobTitle;

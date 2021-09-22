@@ -24,7 +24,7 @@ import selenium.SelServices;
  *
  * @author Eagle
  */
-public class Recruitment_VietNamWork extends Recruitment {
+public class Recruitment_VietNamWork extends Recruitment_Online {
 
     Recruiter Recruiter_vnwork;
     By search = By.xpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]");
@@ -210,7 +210,7 @@ public class Recruitment_VietNamWork extends Recruitment {
                     }
                     String v = list.get(j).getText() + "\r\n" + "link src" + "\r\n" + src;
                     if (handing_no_viewed(v) != null) {
-                        Recruitment.lstCandidates.add(handing_no_viewed(v));
+                        Recruitment_Online.lstCandidates.add(handing_no_viewed(v));
                         count++;
                     }
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
@@ -253,7 +253,7 @@ public class Recruitment_VietNamWork extends Recruitment {
                         SelServices.oDriver.switchTo().window(MainWindow);
                     }
                     String v = list.get(j).getText() + "\r\n" + "link src" + "\r\n" + src;
-                    Recruitment.lstCandidates.add(handing_viewd(v));
+                    Recruitment_Online.lstCandidates.add(handing_viewd(v));
                     count++;
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
                     js.executeScript("arguments[0].scrollIntoView();", view);
@@ -327,7 +327,7 @@ public class Recruitment_VietNamWork extends Recruitment {
     }
 
     public void show() {
-        for (Candidate c : Recruitment.lstCandidates) {
+        for (Candidate c : Recruitment_Online.lstCandidates) {
             System.out.println(c.toString());
         }
     }
@@ -342,7 +342,7 @@ public class Recruitment_VietNamWork extends Recruitment {
             if (Login()) {
                 if (clicksearch()) {
                     //set_categori("IT - Software");
-                    Recruitment.lstCandidates = new ArrayList<>();
+                    Recruitment_Online.lstCandidates = new ArrayList<>();
                     String skip_viewed = "";
                     //checkbox viewed no select
                     if (skip_viewed.isEmpty()) {
@@ -362,7 +362,7 @@ public class Recruitment_VietNamWork extends Recruitment {
                 }
             }
         }
-        return Recruitment.lstCandidates;
+        return Recruitment_Online.lstCandidates;
         //return null;
     }
 

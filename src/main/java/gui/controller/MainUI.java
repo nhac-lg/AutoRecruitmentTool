@@ -5,8 +5,12 @@
  */
 package gui.controller;
 
+import datacenter.Data;
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,12 +77,24 @@ public class MainUI implements Initializable {
             new GUIModel(3, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
             new GUIModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
     );
-    private ObservableList<String> lstAlls = FXCollections.observableArrayList("ConDien", "conkhung", "conMad");
+    //private ObservableList<String> lstAlls = FXCollections.observableArrayList("ConDien", "conkhung", "conMad");
+     private ObservableList<String> lstTitles = null;
+     private ObservableList<String> lstStatus = null;
+     private ObservableList<String> lstCVDates = null;
+     private ObservableList<String> lstExperience = null;
+     private ObservableList<String> lstLocations = null;
+     private ObservableList<String> lstLabels = null;
+     private ObservableList<String> lstReferrals = null;
+     private ObservableList<String> listRecruiters = null;
+     private ObservableList<String> lstResumeUpd = null;
+     private ObservableList<String> listRecruiterNames = null;
+    
     //----------------------------------------------------------------------- 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initFilterComboxes();
         initTableView();
+        
     }    
 
     private void initTableView(){
@@ -99,18 +115,24 @@ public class MainUI implements Initializable {
         tbData.setItems(GUIModels);
     }
     
-    private void initFilterComboxes(){
-          cbTitles.setItems(lstAlls);
-          
-    }
-    
     private void LoadData(){
+        lstTitles = FXCollections.observableList(Data.lstTitles);
+        lstStatus = FXCollections.observableList(Data.lstStatus);
+        lstCVDates = FXCollections.observableList(Data.lstCVDate); //////
+        lstExperience = FXCollections.observableList(Data.lstExperiences);
+        lstLocations = FXCollections.observableList(Data.lstLocators);
+        lstLabels = FXCollections.observableList(Data.lstLabels);
+        lstReferrals = FXCollections.observableList(Data.lstReferrals);
+        listRecruiterNames = null;
+        lstResumeUpd = FXCollections.observableList(Data.lstResumeUpdNames);
+        
         tbData.setItems(GUIModels);
     }
- 
+    private void initFilterComboxes(){
+        cbTitles.setItems(lstTitles);
+          
+    }
     private void RefreshUI(){
-         
-   
          tbData.refresh();
     }
     //Action control -------------------------------------------------- 
@@ -129,6 +151,11 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
          System.out.println("HandleSearchOnline!");
+         
+         Recruitment_OnLine oRecruitmant ; 
+         
+         
+      
     }
    
 
