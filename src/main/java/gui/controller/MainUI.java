@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,7 +22,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.IntegerStringConverter;
 import objmodels.GUIModel;
 
 /**
@@ -98,20 +101,166 @@ public class MainUI implements Initializable {
     }    
 
     private void initTableView(){
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        name.setCellFactory(TextFieldTableCell.forTableColumn());
+        name.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setName(t.getNewValue());
+                    }
+                }
+        );
         job.setCellValueFactory(new PropertyValueFactory<>("job"));
+        job.setCellFactory(TextFieldTableCell.forTableColumn());
+        job.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setJob(t.getNewValue());
+                    }
+                }
+        );
         experience.setCellValueFactory(new PropertyValueFactory<>("experience"));
+        experience.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        // TODO
+//        experience.setOnEditCommit(
+//                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+//                    @Override
+//                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+//                        ((GUIModel) t.getTableView().getItems().get(
+//                                t.getTablePosition().getRow())
+//                        ).setExperience(Integer.parseInt(t.getNewValue()));
+//                    }
+//                }
+//        );
         cv_link.setCellValueFactory(new PropertyValueFactory<>("cv_link"));
+        cv_link.setCellFactory(TextFieldTableCell.forTableColumn());
+        cv_link.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setCv_link(t.getNewValue());
+                    }
+                }
+        );
         skills.setCellValueFactory(new PropertyValueFactory<>("skills"));
+        skills.setCellFactory(TextFieldTableCell.forTableColumn());
+        skills.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setSkills(t.getNewValue());
+                    }
+                }
+        );
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        status.setCellFactory(TextFieldTableCell.forTableColumn());
+        status.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setStatus(t.getNewValue());
+                    }
+                }
+        );
         comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
+        comment.setCellFactory(TextFieldTableCell.forTableColumn());
+        comment.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setComment(t.getNewValue());
+                    }
+                }
+        );
         user.setCellValueFactory(new PropertyValueFactory<>("user"));
+        user.setCellFactory(TextFieldTableCell.forTableColumn());
+        user.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setUser(t.getNewValue());
+                    }
+                }
+        );
         label.setCellValueFactory(new PropertyValueFactory<>("label"));
+        label.setCellFactory(TextFieldTableCell.forTableColumn());
+        label.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setLabel(t.getNewValue());
+                    }
+                }
+        );
         cv_date.setCellValueFactory(new PropertyValueFactory<>("cv_date"));
+        cv_date.setCellFactory(TextFieldTableCell.forTableColumn());
+        cv_date.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setCv_date(t.getNewValue());
+                    }
+                }
+        );
         can_location.setCellValueFactory(new PropertyValueFactory<>("can_location"));
+        can_location.setCellFactory(TextFieldTableCell.forTableColumn());
+        can_location.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setLocation(t.getNewValue());
+                    }
+                }
+        );
         referral.setCellValueFactory(new PropertyValueFactory<>("referral"));
+        referral.setCellFactory(TextFieldTableCell.forTableColumn());
+        referral.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+                        ((GUIModel) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setReferral(t.getNewValue());
+                    }
+                }
+        );
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        phone.setCellFactory(TextFieldTableCell.forTableColumn( new IntegerStringConverter()));
+        //TODO
+//        phone.setOnEditCommit(
+//                new EventHandler<TableColumn.CellEditEvent<GUIModel, String>>() {
+//                    @Override
+//                    public void handle(TableColumn.CellEditEvent<GUIModel, String> t) {
+//                        ((GUIModel) t.getTableView().getItems().get(
+//                                t.getTablePosition().getRow())
+//                        ).setName(t.getNewValue());
+//                    }
+//                }
+//        );
         tbData.setItems(GUIModels);
     }
     

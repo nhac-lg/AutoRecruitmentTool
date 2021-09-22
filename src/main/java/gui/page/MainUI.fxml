@@ -258,7 +258,7 @@
                         <TableView fx:id="tbData" editable="true" prefHeight="540.0" prefWidth="430.0"
                                    GridPane.rowIndex="1">
                             <columns>
-                                <!--                                <TableColumn fx:id="id" maxWidth="30" minWidth="30" prefWidth="75.0" text="ID"/>-->
+                                <!--<TableColumn fx:id="id" maxWidth="30" minWidth="30" prefWidth="75.0" text="ID"/>-->
                                 <TableColumn fx:id="name" prefWidth="75.0" text="Name" editable="true"/>
                                 <TableColumn fx:id="job" prefWidth="75.0" text="Job Title"/>
                                 <TableColumn fx:id="experience" prefWidth="75.0" text="Experience"/>
