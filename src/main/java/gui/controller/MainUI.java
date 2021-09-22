@@ -152,7 +152,7 @@ public class MainUI implements Initializable {
     void HandleSearchOnline(MouseEvent event) {
          System.out.println("HandleSearchOnline!");
          
-         Recruitment_OnLine oRecruitmant ; 
+        
          
          
       
