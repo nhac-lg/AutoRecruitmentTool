@@ -288,13 +288,11 @@ public class MainUI implements Initializable {
         lstReferrals = FXCollections.observableList(Data.lstReferrals);
         listRecruiterNames = null;
         lstResumeUpd = FXCollections.observableList(Data.lstResumeUpdNames);
-
         tbData.setItems(GUIModels);
     }
 
     private void initFilterComboxes() {
         cbTitles.setItems(lstTitles);
-
     }
 
     private void RefreshUI() {
@@ -316,9 +314,6 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
-
-
     }
-
 
 }
