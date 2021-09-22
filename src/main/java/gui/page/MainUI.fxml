@@ -166,32 +166,35 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0">
                                         <children>
-                                            <ComboBox layoutX="90.0" layoutY="14.0" prefHeight="26.0" prefWidth="100.0"
-                                                      promptText="VNWorks"/>
-                                            <TextField layoutX="8.0" layoutY="70.0" prefHeight="26.0"
-                                                       prefWidth="180.0"/>
                                             <Label layoutX="8.0" layoutY="19.0" prefHeight="17.0" prefWidth="67.0"
                                                    text="Source:"/>
+                                            <ComboBox fx:id="cbEmployerOnlineSearch" layoutX="90.0" layoutY="14.0" prefHeight="26.0"
+                                                      prefWidth="100.0" promptText="VNWorks"/>
                                             <Label layoutX="8.0" layoutY="53.0" text="Keyword to Search"/>
+                                            <TextField fx:id="txtSearchKeywordOnlineSearch" layoutX="8.0" layoutY="70.0"
+                                                       prefHeight="26.0" prefWidth="180.0"/>
                                             <Label layoutX="9.0" layoutY="103.0" text="Last Resume Update"/>
-                                            <ComboBox layoutX="10.0" layoutY="120.0" prefHeight="26.0" prefWidth="179.0"
+                                            <ComboBox fx:id="cbLastResumeUpdateOnlineSearch" layoutX="10.0"
+                                                      layoutY="120.0" prefHeight="26.0" prefWidth="179.0"
                                                       promptText="Any"/>
                                             <Label layoutX="11.0" layoutY="165.0" prefHeight="17.0" prefWidth="111.0"
                                                    text="Years of Experience"/>
                                             <Label layoutX="11.0" layoutY="188.0" prefHeight="17.0" prefWidth="31.0"
                                                    text="From"/>
                                             <Label layoutX="104.0" layoutY="188.0" text="To"/>
-                                            <TextField layoutX="10.0" layoutY="206.0" prefHeight="26.0"
-                                                       prefWidth="79.0"/>
-                                            <TextField layoutX="105.0" layoutY="206.0" prefHeight="26.0"
-                                                       prefWidth="83.0"/>
+                                            <TextField fx:id="txtExperienceFromOnlineSearch" layoutX="10.0"
+                                                       layoutY="206.0" prefHeight="26.0" prefWidth="79.0"/>
+                                            <TextField fx:id="txtExperienceToOnlineSearch" layoutX="105.0"
+                                                       layoutY="206.0" prefHeight="26.0" prefWidth="83.0"/>
                                             <Label layoutX="10.0" layoutY="240.0" text="Expected Working Location"/>
-                                            <ComboBox layoutX="9.0" layoutY="265.0" prefHeight="26.0" prefWidth="178.0"
+                                            <ComboBox fx:id="cbWorkingLocationOnlineSearch" layoutX="9.0"
+                                                      layoutY="265.0" prefHeight="26.0" prefWidth="178.0"
                                                       promptText="Choose cities"/>
                                             <CheckBox layoutX="10.0" layoutY="303.0" mnemonicParsing="false"
                                                       selected="true" text="Skip &quot;viewed&quot; resume"/>
                                             <Label layoutX="14.0" layoutY="327.0" text="Sort By"/>
-                                            <ComboBox layoutX="9.0" layoutY="350.0" prefHeight="26.0" prefWidth="181.0"
+                                            <ComboBox fx:id="cbLatestResumeUpdateOnlineSearch" layoutX="9.0"
+                                                      layoutY="350.0" prefHeight="26.0" prefWidth="181.0"
                                                       promptText="Latest Resume Update"/>
                                             <Label layoutX="20.0" layoutY="387.0" text="Show First"/>
                                             <TextField alignment="CENTER_RIGHT" layoutX="107.0" layoutY="383.0"
@@ -259,7 +262,7 @@
                                    GridPane.rowIndex="1">
                             <columns>
                                 <!--<TableColumn fx:id="id" maxWidth="30" minWidth="30" prefWidth="75.0" text="ID"/>-->
-                                <TableColumn fx:id="name" prefWidth="75.0" text="Name" editable="true"/>
+                                <TableColumn fx:id="name" editable="true" prefWidth="75.0" text="Name"/>
                                 <TableColumn fx:id="job" prefWidth="75.0" text="Job Title"/>
                                 <TableColumn fx:id="experience" prefWidth="75.0" text="Experience"/>
                                 <TableColumn fx:id="cv_link" prefWidth="75.0" text="CV Link"/>
