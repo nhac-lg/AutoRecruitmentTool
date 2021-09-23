@@ -25,6 +25,15 @@ public class Candidate {
     public String status;
     public String skill;
     public String comment;
+    public String user;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;
@@ -149,7 +158,7 @@ public class Candidate {
     public Candidate() {
     }
 
-    public Candidate(String name, String job_title, String latest_cpmpany, String exp_year, String salary, String location, String src_link, String gender, String phone, String referral, String latest_upd, String label, String status, String skill, String comment) {  
+    public Candidate(String name, String job_title, String latest_cpmpany, String exp_year, String salary, String location, String src_link, String gender, String phone, String referral, String latest_upd, String label, String status, String skill, String comment, String user) {
         this.name = name;
         this.job_title = job_title;
         this.latest_cpmpany = latest_cpmpany;
@@ -165,11 +174,12 @@ public class Candidate {
         this.status = status;
         this.skill = skill;
         this.comment = comment;
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        return "Candidate{" + "name=" + name + ", job_title=" + job_title + ", latest_cpmpany=" + latest_cpmpany + ", exp_year=" + exp_year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + ", gender=" + gender + ", phone=" + phone + ", referral=" + referral + ", latest_upd=" + latest_upd + ", label=" + label + ", status=" + status + ", skill=" + skill + ", comment=" + comment + '}';
+        return "Candidate{" + "name=" + name + ", job_title=" + job_title + ", latest_cpmpany=" + latest_cpmpany + ", exp_year=" + exp_year + ", salary=" + salary + ", location=" + location + ", src_link=" + src_link + ", gender=" + gender + ", phone=" + phone + ", referral=" + referral + ", latest_upd=" + latest_upd + ", label=" + label + ", status=" + status + ", skill=" + skill + ", comment=" + comment + ", user=" + user + '}';
     }
     
 }

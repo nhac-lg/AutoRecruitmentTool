@@ -54,7 +54,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     By lasted_upd = By.xpath("//div[@class='field field-update-resume']/span");
 
     public Recruitment_VietNamWork() {
-        Recruiter_vnwork = vnwork(Information.source);
+        Recruiter_vnwork = vnwork(MainUI.txt_cbEmloyerOnlinesearch);
     }
 
     private Recruiter vnwork(String vnwork) {
@@ -184,15 +184,15 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
         return false;
     }
 
-    static int count = 0;
+    static int count;
 
     public void all_print_no_viewed(int n) throws Exception {
-        do {
-            String MainWindow = SelServices.oDriver.getWindowHandle();
-            System.out.println("Main window handle is " + MainWindow);
+        do { 
             WebDriverWait wait = new WebDriverWait(SelServices.oDriver, 10);
             List<WebElement> list = SelServices.oDriver.findElements(list_resume);
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list_resume));
+            String MainWindow = SelServices.oDriver.getWindowHandle();
+            System.out.println("Main window handle is " + MainWindow);
             for (int j = 0; j < list.size(); j++) {
                 if (count < n) {
                     WebElement view = SelServices.oDriver.findElement(By.xpath("//body/div[8]/div[1]/div[1]/div[1]/div[2]/div[2]/div["
@@ -236,11 +236,11 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
 
     public void all_print_viewd(int n) throws Exception {
         do {
-            String MainWindow = SelServices.oDriver.getWindowHandle();
-            System.out.println("Main window handle is " + MainWindow);
             WebDriverWait wait = new WebDriverWait(SelServices.oDriver, 10);
             List<WebElement> list = SelServices.oDriver.findElements(list_resume);
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list_resume));
+            String MainWindow = SelServices.oDriver.getWindowHandle();
+            System.out.println("Main window handle is " + MainWindow);
             for (int j = 0; j < list.size(); j++) {
                 if (count < n) {
                     WebElement view = SelServices.oDriver.findElement(By.xpath("//body/div[8]/div[1]/div[1]/div[1]/div[2]/div[2]/div["
@@ -251,7 +251,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                     Thread.sleep(2000);
                     String src = " ";
                     String Gender, Lasted_upd,sex;
-                    List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
+                    List<WebElement> list1 = SelServices.oDriver.findElements(link_src);
                     sex=SelServices.oDriver.findElement(gender).getText();
                     Gender = "gender" + "\r\n" + handle_gender(sex);
                     Lasted_upd = "latest update" + "\r\n" + SelServices.oDriver.findElement(lasted_upd).getText().substring(15, 25);
@@ -266,17 +266,20 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                     }
                     String v = list.get(j).getText() + "\r\n" + src + "\r\n" + Gender + "\r\n" + Lasted_upd;
                     Data.lstCandidates.add(handing_viewd(v));
-                    count++;
+                   
                     JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
                     js.executeScript("arguments[0].scrollIntoView();", view);
                     Thread.sleep(2000);
+                    count++;
                 }
             }
+            if(count<n){
             JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
             js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
             WebElement next = SelServices.oDriver.findElement(next_page);
             next.click();
             Thread.sleep(3000);
+            }
         } while (count < n);
     }
 
@@ -309,7 +312,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (lines[i].equalsIgnoreCase("latest update")) {
                 latest_upd = lines[i + 1];
             }
-            c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
+            c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment","user");
         }
         return c;
     }
@@ -346,7 +349,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 if (lines[i].equalsIgnoreCase("latest update")) {
                     latest_upd = lines[i + 1];
                 }
-                c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
+                c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment","user");
                 //c = new Candidate(name, pos, company, year, salary, location, link);
             }
         }
