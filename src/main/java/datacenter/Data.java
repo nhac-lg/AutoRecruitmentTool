@@ -8,10 +8,10 @@ package datacenter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
 import objmodels.Candidate;
+import objmodels.CandiidateModel;
 import objmodels.Recruiter;
 
 /**
@@ -23,27 +23,28 @@ public class Data {
     
     //Definition data
     public static List<Recruiter> lstRecruiters = new ArrayList<>();
-    public static List<String> lstRecruiterNames = Arrays.asList("None");
-    
+    public static List<String> lstRecruiterNames = new ArrayList<>();
     public static HashMap<String, String> lstResumeUpd = new HashMap<String, String>();
-    public static List<String> lstResumeUpdNames = Arrays.asList("None");
-    
-    public static List<String> lstLocators = Arrays.asList("None");
-    public static List<String> lstTitles =  Arrays.asList("None");
-    public static List<String> lstStatus =  Arrays.asList("None");
-    public static List<String> lstExperiences =  Arrays.asList("None");
-    public static List<String> lstLabels = Arrays.asList("None");
-    public static List<String> lstReferrals = Arrays.asList("None");
-    public static List<String> lstCVDate = Arrays.asList("None");
+    public static List<String> lstLocators =  new ArrayList<>();
+    public static List<String> lstTitles =  new ArrayList<>();
+    public static List<String> lstStatus =  new ArrayList<>();
+    public static List<String> lstExperiences =  new ArrayList<>();
+    public static List<String> lstLabels = new ArrayList<>();
+    public static List<String> lstReferrals = new ArrayList<>();
+    public static List<String> lstCVDate = new ArrayList<>();
 
-    public static List<Candidate> lstCandidates = new ArrayList<>();
+    public static List<Candidate> lstCandidates = new ArrayList<>(); ////
+    
+    public static List<CandiidateModel> lstCandidateModel = new ArrayList<>();
+    
+
      
     //Load Defintion XML to get lstRecruiter, lstLocators, lstTitles, lstCVUpdate
     public static void loadDefinitionData(){
         
-       lstRecruiterNames = Arrays.asList("VietNamWork","ITviet"); //////
-       lstLocators = Arrays.asList("TP HCM","Da Nang", "Hue");
-       lstStatus = Arrays.asList("New","Screening", "Passed screen", "Failed screen", "Approaching", "Reject interview", "Interviewing", "Failed test/interview", "Offering", "Rejected offer", "Accepted offer", "Reject onboard", "Onboard");
+       lstRecruiterNames.addAll(Arrays.asList("VietNamWork","ITviet")); //////
+       lstLocators.addAll(Arrays.asList("TP HCM","Da Nang", "Hue"));
+       lstStatus.addAll(Arrays.asList("New","Screening", "Passed screen", "Failed screen", "Approaching", "Reject interview", "Interviewing", "Failed test/interview", "Offering", "Rejected offer", "Accepted offer", "Reject onboard", "Onboard"));
       
        lstResumeUpd.put("Any","Any");
        lstResumeUpd.put("Today","0");
@@ -54,20 +55,27 @@ public class Data {
        lstResumeUpd.put("2 month(s)", "60");
        lstResumeUpd.put("6 month(s)", "180");
        lstResumeUpd.put("12 month(s)", "360");
+       
+       lstTitles.addAll(Arrays.asList("dgdfgfdg","tttt"));
+       
+       
+       //test ----------------------
+       
+          lstCandidateModel.addAll(Arrays.asList(
+                new CandiidateModel(1, "Nhac", "Developer", 3, "google", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+                new CandiidateModel(2, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+                new CandiidateModel(3, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890),
+                new CandiidateModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
+        ));
+       //------------------------------
+     
     }
     
      public void Update(){
          lstRecruiterNames = lstRecruiters.stream().distinct().map(Recruiter::getName).collect(Collectors.toList());
-         lstResumeUpdNames = new ArrayList<>(lstResumeUpd.keySet());
          lstReferrals  = lstCandidates.stream().distinct().map(Candidate::getReferral).collect(Collectors.toList());
          lstTitles  = lstCandidates.stream().distinct().map(Candidate::getJob_title).collect(Collectors.toList());
          lstExperiences= lstCandidates.stream().distinct().map(Candidate::getExp_year).collect(Collectors.toList());
          lstLabels=lstCandidates.stream().distinct().map(Candidate::getLabel).collect(Collectors.toList());
-         
-         
      }
-    
-    
- 
-    
-}
+ }

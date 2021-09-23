@@ -22,8 +22,8 @@ public class Main {
     }
     
     private static void InitApp(){
-        Utils.ReadXML();
-        Data.loadDefinitionData();
+       // Utils.ReadXML();
+       Data.loadDefinitionData();
        
     }
     

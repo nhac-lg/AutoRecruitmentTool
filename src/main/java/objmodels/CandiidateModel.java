@@ -2,12 +2,9 @@ package objmodels;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.input.DataFormat;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-public class GUIModel {
+public class CandiidateModel {
 
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
@@ -24,7 +21,7 @@ public class GUIModel {
     private SimpleStringProperty referral;
     private SimpleIntegerProperty phone;
 
-    public GUIModel(Integer id, String name, String job, Integer experience, String cv_link, String skills, String status, String comment, String user, String label, String cv_date, String location, String referral, Integer phone) {
+    public CandiidateModel(Integer id, String name, String job, Integer experience, String cv_link, String skills, String status, String comment, String user, String label, String cv_date, String location, String referral, Integer phone) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.job = new SimpleStringProperty(job);
@@ -91,7 +88,9 @@ public class GUIModel {
 
     public String getLabel() { return label.get(); }
 
-    public void setLabel(String label) { this.label = new SimpleStringProperty(label); }
+    public void setLabel(String label) {
+        this.label = new SimpleStringProperty(label); 
+    }
 
     public String getCv_date() { return cv_date.get(); }
 
