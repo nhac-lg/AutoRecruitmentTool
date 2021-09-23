@@ -128,9 +128,9 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0">
                                         <children>
                                             <Label layoutX="15.0" layoutY="13.0" text="Folder"/>
-                                            <TextField layoutX="11.0" layoutY="39.0" prefHeight="26.0"
+                                            <TextField fx:id="txtFolderSearch" layoutX="11.0" layoutY="39.0" prefHeight="26.0"
                                                        prefWidth="171.0"/>
-                                            <CheckBox layoutX="13.0" layoutY="82.0" mnemonicParsing="false"
+                                            <CheckBox fx:id="checkIncludeSubFolderFolderSearch" layoutX="13.0" layoutY="82.0" mnemonicParsing="false"
                                                       selected="true" text="Include Subfolder"/>
                                             <Button layoutX="92.0" layoutY="126.0" mnemonicParsing="false"
                                                     onMouseClicked="#HandleSearchFolder" prefHeight="26.0"
@@ -146,13 +146,13 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0">
                                         <children>
                                             <Label layoutX="7.0" layoutY="18.0" text="Status"/>
-                                            <ComboBox layoutX="12.0" layoutY="48.0" prefHeight="27.0" prefWidth="174.0"
+                                            <ComboBox fx:id="cbStatusLocalSearch" layoutX="12.0" layoutY="48.0" prefHeight="27.0" prefWidth="174.0"
                                                       promptText="Any"/>
                                             <Label layoutX="11.0" layoutY="91.0" text="Last Status Update"/>
-                                            <ComboBox layoutX="13.0" layoutY="125.0" prefHeight="27.0" prefWidth="173.0"
+                                            <ComboBox fx:id="cbLastStatusUpdateLocalSearch" layoutX="13.0" layoutY="125.0" prefHeight="27.0" prefWidth="173.0"
                                                       promptText="1 week"/>
                                             <Label layoutX="12.0" layoutY="169.0" text="Expected Working Location"/>
-                                            <ComboBox layoutX="13.0" layoutY="193.0" prefHeight="27.0" prefWidth="171.0"
+                                            <ComboBox fx:id="cbExpectedLocationLocalSearch" layoutX="13.0" layoutY="193.0" prefHeight="27.0" prefWidth="171.0"
                                                       promptText="Choose cities"/>
                                             <Button layoutX="93.0" layoutY="242.0" mnemonicParsing="false"
                                                     onMouseClicked="#HandleSearchDB" prefHeight="26.0" prefWidth="84.0"
@@ -243,14 +243,14 @@
                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ComboBox fx:id="cbTitles" prefWidth="125.0" promptText="Title: all"/>
-                                <ComboBox prefWidth="125.0" promptText="Experience: all" GridPane.columnIndex="1"/>
-                                <ComboBox prefWidth="125.0" promptText="Status: all" GridPane.columnIndex="2"/>
-                                <ComboBox prefWidth="125.0" promptText="Label: all" GridPane.columnIndex="3"/>
-                                <ComboBox prefWidth="125.0" promptText="Location: all" GridPane.columnIndex="4"/>
-                                <ComboBox prefWidth="125.0" promptText="CV Date: all" GridPane.columnIndex="5"/>
-                                <ComboBox prefWidth="125.0" promptText="Referral: all" GridPane.columnIndex="6"/>
-                                <TextField prefWidth="125.0" promptText="Search Name"
+                                <ComboBox fx:id="cbTitlesTop" prefWidth="125.0" promptText="Title: all"/>
+                                <ComboBox fx:id="cbExpTop" prefWidth="125.0" promptText="Experience: all" GridPane.columnIndex="1"/>
+                                <ComboBox fx:id="cbStatusTop" prefWidth="125.0" promptText="Status: all" GridPane.columnIndex="2"/>
+                                <ComboBox fx:id="cbLabelTop" prefWidth="125.0" promptText="Label: all" GridPane.columnIndex="3"/>
+                                <ComboBox fx:id="cbLocationTop" prefWidth="125.0" promptText="Location: all" GridPane.columnIndex="4"/>
+                                <ComboBox fx:id="cbCVDateTop" prefWidth="125.0" promptText="CV Date: all" GridPane.columnIndex="5"/>
+                                <ComboBox fx:id="cbReferralTop" prefWidth="125.0" promptText="Referral: all" GridPane.columnIndex="6"/>
+                                <TextField fx:id="txtSearchTop" prefWidth="125.0" promptText="Search Name"
                                            style="-fx-border-width: 0.5px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: gray;"
                                            GridPane.columnIndex="7"/>
                             </children>

@@ -9,15 +9,12 @@ import datacenter.Data;
 import filter.Recruitment_Online;
 import filter.Recruitment_VietNamWork;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,9 +32,21 @@ import objmodels.GUIModel;
  */
 public class MainUI implements Initializable {
 
-    //Declare comboboc Controls---------------------------
+    //Declare top filter Controls---------------------------
     @FXML
-    private ComboBox<String> cbTitles;
+    private ComboBox<String> cbTitlesTop;
+    @FXML
+    private ComboBox<String> cbExpTop;
+    @FXML
+    private ComboBox<String> cbStatusTop;
+    @FXML
+    private ComboBox<String> cbLabelTop;
+    @FXML
+    private ComboBox<String> cbCVDateTop;
+    @FXML
+    private ComboBox<String> cbReferralTop;
+    @FXML
+    private TextField txtSearchTop;
 
     //Declare left filter controls
     @FXML
@@ -57,8 +66,18 @@ public class MainUI implements Initializable {
     private ComboBox<String> cbWorkingLocationOnlineSearch;
     @FXML
     private ComboBox<String> cbLatestResumeUpdateOnlineSearch;
+    @FXML
+    private ComboBox<String> cbStatusLocalSearch;
+    @FXML
+    private ComboBox<String> cbLastStatusUpdateLocalSearch;
+    @FXML
+    private ComboBox<String> cbExpectedLocationLocalSearch;
+    @FXML
+    private TextField txtFolderSearch;
+    @FXML
+    private CheckBox checkIncludeSubFolderFolderSearch;
 
-    //TDeclare able view ------------------------
+    //Declare Table View ------------------------
     @FXML
     private TableView<GUIModel> tbData;
     @FXML
@@ -100,16 +119,17 @@ public class MainUI implements Initializable {
             new GUIModel(4, "Nhac", "Developer", 3, "google.com", "abc", "In progress", "none", "somebody", "test", "2021-09-09", "HCMC", "VNWork", 1234567890)
     );
     //private ObservableList<String> lstAlls = FXCollections.observableArrayList("ConDien", "conkhung", "conMad");
-    private ObservableList<String> lstTitles = null;
-    private ObservableList<String> lstStatus = null;
-    private ObservableList<String> lstCVDates = null;
-    private ObservableList<String> lstExperience = null;
-    private ObservableList<String> lstLocations = null;
-    private ObservableList<String> lstLabels = null;
-    private ObservableList<String> lstReferrals = null;
-    private ObservableList<String> listRecruiters = null;
-    private ObservableList<String> lstResumeUpd = null;
-    private ObservableList<String> listRecruiterNames = null;
+    private FilteredList<String> lstAlls = null;
+    private FilteredList<String> lstTitles = null;
+    private FilteredList<String> lstStatus = null;
+    private FilteredList<String> lstCVDates = null;
+    private FilteredList<String> lstExperience = null;
+    private FilteredList<String> lstLocations = null;
+    private FilteredList<String> lstLabels = null;
+    private FilteredList<String> lstReferrals = null;
+    private FilteredList<String> listRecruiters = null;
+    private FilteredList<String> lstResumeUpd = null;
+    private FilteredList<String> listRecruiterNames = null;
 
     //----------------------------------------------------------------------- 
     @Override
@@ -121,7 +141,6 @@ public class MainUI implements Initializable {
     }
 
     private void initTableView() {
-//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
 //        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         name.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -285,26 +304,30 @@ public class MainUI implements Initializable {
     }
 
     private void LoadData() {
-        lstTitles = FXCollections.observableList(Data.lstTitles);
-        lstStatus = FXCollections.observableList(Data.lstStatus);
-        lstCVDates = FXCollections.observableList(Data.lstCVDate); //////
-        lstExperience = FXCollections.observableList(Data.lstExperiences);
-        lstLocations = FXCollections.observableList(Data.lstLocators);
-        lstLabels = FXCollections.observableList(Data.lstLabels);
-        lstReferrals = FXCollections.observableList(Data.lstReferrals);
-        //listRecruiterNames = null;
-        listRecruiterNames = FXCollections.observableList(Data.lstRecruiterNames);
-        lstResumeUpd = FXCollections.observableList(Data.lstResumeUpdNames);
+        // Test
+        lstTitles = new FilteredList<String>(FXCollections.observableArrayList("One", "Two", "Three", "Four", "Five", "Six",
+                "Seven", "Eight", "Nine", "Ten"));
+//        lstTitles = new FilteredList<String>(FXCollections.observableList(Data.lstTitles));
+        lstStatus = new FilteredList<String>(FXCollections.observableList(Data.lstStatus));
+        lstCVDates = new FilteredList<String>(FXCollections.observableList(Data.lstCVDate));
+        lstExperience = new FilteredList<String>(FXCollections.observableList(Data.lstExperiences));
+        lstLocations = new FilteredList<String>(FXCollections.observableList(Data.lstLocators));
+        lstLabels = new FilteredList<String>(FXCollections.observableList(Data.lstLabels));
+        lstReferrals = new FilteredList<String>(FXCollections.observableList(Data.lstReferrals));
+        listRecruiterNames = new FilteredList<String>(FXCollections.observableList(Data.lstRecruiterNames));
+        lstResumeUpd = new FilteredList<String>(FXCollections.observableList(Data.lstResumeUpdNames));
         tbData.setItems(GUIModels);
     }
 
     private void initFilterComboxes() {
-        cbTitles.setItems(lstTitles);
-        cbEmployerOnlineSearch.setItems(listRecruiterNames);  
-        
+        cbTitlesTop.setItems(lstTitles);
+        cbEmployerOnlineSearch.setItems(listRecruiterNames);
+
     }
 
     private void RefreshUI() {
+        lstTitles = new FilteredList<String>(FXCollections.observableArrayList("One", "Two", "Three"));
+        cbTitlesTop.setItems(lstTitles);
         tbData.refresh();
     }
     //Action control -------------------------------------------------- 
@@ -324,8 +347,8 @@ public class MainUI implements Initializable {
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
         Recruitment_Online orecruiter_onl;
-        if(cbEmployerOnlineSearch.getSelectionModel().getSelectedItem().equalsIgnoreCase("VietNamWork")){
-            orecruiter_onl= new Recruitment_VietNamWork();
+        if (cbEmployerOnlineSearch.getSelectionModel().getSelectedItem().equalsIgnoreCase("VietNamWork")) {
+            orecruiter_onl = new Recruitment_VietNamWork();
             orecruiter_onl.Filter();
         }
     }
