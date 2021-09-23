@@ -6,28 +6,20 @@
 package gui.controller;
 
 import datacenter.Data;
-
 import filter.Recruitment_Online;
 import filter.Recruitment_VietNamWork;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import java.util.ResourceBundle;
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
-
 import javafx.util.converter.IntegerStringConverter;
 import objmodels.CandiidateModel;
 
