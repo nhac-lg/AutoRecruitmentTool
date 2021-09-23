@@ -18,9 +18,10 @@ import objmodels.Recruiter;
  *
  * @author Eagle
  */
+
 public class Data {
     
-    //Defintion data
+    //Definition data
     public static List<Recruiter> lstRecruiters = new ArrayList<>();
     public static List<String> lstRecruiterNames = Arrays.asList("None");
     
@@ -42,9 +43,8 @@ public class Data {
         
        lstRecruiterNames = Arrays.asList("VietNamWork","ITviet"); //////
        lstLocators = Arrays.asList("TP HCM","Da Nang", "Hue");
-       lstStatus = Arrays.asList("New","Screening", "Passed screen", "Failed screeb", "Approaching", "Reject interview", "Interviewing", "Failed test/interview", "Offering", "Rejected offer", "Accepted offer", "Reject onboard", "Onboard");
+       lstStatus = Arrays.asList("New","Screening", "Passed screen", "Failed screen", "Approaching", "Reject interview", "Interviewing", "Failed test/interview", "Offering", "Rejected offer", "Accepted offer", "Reject onboard", "Onboard");
       
-       lstResumeUpd = new HashMap<>();
        lstResumeUpd.put("Any","Any");
        lstResumeUpd.put("Today","0");
        lstResumeUpd.put("Yesterday", "1");
