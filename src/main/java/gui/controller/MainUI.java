@@ -51,20 +51,27 @@ public class MainUI implements Initializable {
     //Declare left filter controls
     @FXML
     private ComboBox<String> cbEmployerOnlineSearch;
+    public static String txt_cbEmloyerOnlinesearch;
     @FXML
     private TextField txtSearchKeywordOnlineSearch;
-    public static String textsearch;
+    public static String txt_search;
     @FXML
     private TextField txtExperienceFromOnlineSearch;
-    public static String txtExpFrom;
+    public static String txt_ExpFrom;
     @FXML
     private TextField txtExperienceToOnlineSearch;
-    public static String txtExpTo;
+    public static String txt_ExpTo;
     @FXML
     private ComboBox<String> cbLastResumeUpdateOnlineSearch;
+    public static String txt_cbLastResumeUpdateOnlineSearch;
     //private ComboBox<UpdateList> cbLastResumeUpdateOnlineSearch;
     @FXML
     private ComboBox<String> cbWorkingLocationOnlineSearch;
+    public static String txt_cbWorkingLocationOnlineSearch;
+    
+    @FXML
+    private CheckBox check_viewed;
+    
     @FXML
     private ComboBox<String> cbLatestResumeUpdateOnlineSearch;
     @FXML
@@ -118,6 +125,7 @@ public class MainUI implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         initTableView();
         InitFilterControls();
+        
     }
 
     private void initTableView() {
@@ -218,6 +226,7 @@ public class MainUI implements Initializable {
         cbLastResumeUpdateOnlineSearch.setItems(FXCollections.observableList(new ArrayList<>(Data.lstResumeUpd.keySet())));
         cbLocationTop.setItems(FXCollections.observableList(Data.lstLocators));
         cbEmployerOnlineSearch.setItems(FXCollections.observableList(Data.lstRecruiterNames));
+        cbWorkingLocationOnlineSearch.setItems(FXCollections.observableList(Data.lstLocators));
         //------------------------------------------
         cbCVDateTop.setItems(FXCollections.observableList(Arrays.asList("None")));
         cbTitlesTop.setItems(FXCollections.observableList(Arrays.asList("None")));
@@ -234,6 +243,7 @@ public class MainUI implements Initializable {
         cbLabelTop.setItems(FXCollections.observableList(Data.lstLabels));
         cbReferralTop.setItems(FXCollections.observableList(Data.lstReferrals));
         lstCandidates = FXCollections.observableArrayList(Data.lstCandidateModel);
+        tbData.setItems(lstCandidates); 
         tbData.refresh();
     }
  //Action control --------------------------------------------------
@@ -251,11 +261,19 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
+        txt_cbEmloyerOnlinesearch = cbEmployerOnlineSearch.getSelectionModel().getSelectedItem();
+        txt_search = txtSearchKeywordOnlineSearch.getText();
+        txt_cbLastResumeUpdateOnlineSearch = cbLastResumeUpdateOnlineSearch.getSelectionModel().getSelectedItem();
+        txt_ExpFrom = txtExperienceFromOnlineSearch.getText();
+        txt_ExpTo = txtExperienceToOnlineSearch.getText();
+        txt_cbWorkingLocationOnlineSearch = cbWorkingLocationOnlineSearch.getSelectionModel().getSelectedItem();
         Recruitment_Online orecruiter_onl;
-        if (cbEmployerOnlineSearch.getSelectionModel().getSelectedItem().equalsIgnoreCase("VietNamWork")) {
+        if (txt_cbEmloyerOnlinesearch.equalsIgnoreCase("VietNamWork")) {
             orecruiter_onl = new Recruitment_VietNamWork();
             orecruiter_onl.Filter();
         }
+        Data.Update();
+        refreshData();
     }
 
 }

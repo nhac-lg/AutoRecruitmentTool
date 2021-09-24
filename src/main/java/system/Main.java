@@ -17,12 +17,12 @@ import selenium.SelServices;
 public class Main {
     public static void main(String args[]){
         InitApp();
-        //new SelServices();
+        new SelServices();
         Application.launch(App.class, args);
     }
     
     private static void InitApp(){
-       // Utils.ReadXML();
+       Utils.ReadXML();
        Data.loadDefinitionData();
        
     }

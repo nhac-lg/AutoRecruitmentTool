@@ -71,11 +71,19 @@ public class Data {
      
     }
     
-     public void Update(){
+     public static void Update(){
          lstRecruiterNames = lstRecruiters.stream().distinct().map(Recruiter::getName).collect(Collectors.toList());
-         lstReferrals  = lstCandidates.stream().distinct().map(Candidate::getReferral).collect(Collectors.toList());
-         lstTitles  = lstCandidates.stream().distinct().map(Candidate::getJob_title).collect(Collectors.toList());
-         lstExperiences= lstCandidates.stream().distinct().map(Candidate::getExp_year).collect(Collectors.toList());
-         lstLabels=lstCandidates.stream().distinct().map(Candidate::getLabel).collect(Collectors.toList());
+         //lstReferrals  = lstCandidates.stream().distinct().map(Candidate::getReferral).collect(Collectors.toList());
+         //lstTitles  = lstCandidates.stream().distinct().map(Candidate::getJob_title).collect(Collectors.toList());
+         //lstExperiences= lstCandidates.stream().distinct().map(Candidate::getExp_year).collect(Collectors.toList());
+         //lstLabels=lstCandidates.stream().distinct().map(Candidate::getLabel).collect(Collectors.toList());
+         
+        //CandidateModel
+         //lstRecruiterNames = lstRecruiters.stream().distinct().map(Recruiter::getName).collect(Collectors.toList());
+         lstReferrals  = lstCandidateModel.stream().distinct().map(CandiidateModel::getReferral).collect(Collectors.toList());
+         //lstTitles  = lstCandidates.stream().distinct().map(CandiidateModel::getJob).collect(Collectors.toList()); 
+         //lstExperiences= lstCandidates.stream().distinct().map(CandiidateModel::getExperience).collect(Collectors.toList());
+         //lstLabels=lstCandidates.stream().distinct().map(CandiidateModel::getLabel).collect(Collectors.toList());
      }
+     
  }

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import objmodels.CandiidateModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -54,7 +55,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     By lasted_upd = By.xpath("//div[@class='field field-update-resume']/span");
 
     public Recruitment_VietNamWork() {
-        Recruiter_vnwork = vnwork(Information.source);
+        Recruiter_vnwork = vnwork(MainUI.txt_cbEmloyerOnlinesearch);
     }
 
     private Recruiter vnwork(String vnwork) {
@@ -234,7 +235,54 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
         } while (count < n);
     }
 
-    public void all_print_viewd(int n) throws Exception {
+//    public void all_print_viewd(int n) throws Exception {
+//        do {
+//            String MainWindow = SelServices.oDriver.getWindowHandle();
+//            System.out.println("Main window handle is " + MainWindow);
+//            WebDriverWait wait = new WebDriverWait(SelServices.oDriver, 10);
+//            List<WebElement> list = SelServices.oDriver.findElements(list_resume);
+//            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list_resume));
+//            for (int j = 0; j < list.size(); j++) {
+//                if (count < n) {
+//                    WebElement view = SelServices.oDriver.findElement(By.xpath("//body/div[8]/div[1]/div[1]/div[1]/div[2]/div[2]/div["
+//                            + (j + 1) + "]/div[1]/div[1]/div[3]/div[1]/a[1]"));
+//                    view.click();
+//                    ArrayList<String> newTab = new ArrayList<String>(SelServices.oDriver.getWindowHandles());
+//                    SelServices.oDriver.switchTo().window(newTab.get(1));
+//                    Thread.sleep(2000);
+//                    String src = " ";
+//                    String Gender, Lasted_upd,sex;
+//                    List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
+//                    sex=SelServices.oDriver.findElement(gender).getText();
+//                    Gender = "gender" + "\r\n" + handle_gender(sex);
+//                    Lasted_upd = "latest update" + "\r\n" + SelServices.oDriver.findElement(lasted_upd).getText().substring(15, 25);
+//                    if (list1.size() > 0) {
+//                        src = "link src" + "\r\n" + SelServices.oDriver.findElement(link_src).getAttribute("src");
+//                        SelServices.oDriver.close();
+//                        SelServices.oDriver.switchTo().window(MainWindow);
+//                    } else {
+//                        src = "link src" + "\r\n" + "no src";
+//                        SelServices.oDriver.close();
+//                        SelServices.oDriver.switchTo().window(MainWindow);
+//                    }
+//                    String v = list.get(j).getText() + "\r\n" + src + "\r\n" + Gender + "\r\n" + Lasted_upd;
+//                    //Data.lstCandidates.add(handing_viewd(v));
+//                    Data.lstCandidateModel.add(handing_viewd(v));
+//                    count++;
+//                    JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
+//                    js.executeScript("arguments[0].scrollIntoView();", view);
+//                    Thread.sleep(2000);
+//                }
+//            }
+//            JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
+//            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//            WebElement next = SelServices.oDriver.findElement(next_page);
+//            next.click();
+//            Thread.sleep(3000);
+//        } while (count < n);
+//    }
+
+     public void all_print_viewd(int n) throws Exception {
         do {
             String MainWindow = SelServices.oDriver.getWindowHandle();
             System.out.println("Main window handle is " + MainWindow);
@@ -243,33 +291,10 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(list_resume));
             for (int j = 0; j < list.size(); j++) {
                 if (count < n) {
-                    WebElement view = SelServices.oDriver.findElement(By.xpath("//body/div[8]/div[1]/div[1]/div[1]/div[2]/div[2]/div["
-                            + (j + 1) + "]/div[1]/div[1]/div[3]/div[1]/a[1]"));
-                    view.click();
-                    ArrayList<String> newTab = new ArrayList<String>(SelServices.oDriver.getWindowHandles());
-                    SelServices.oDriver.switchTo().window(newTab.get(1));
-                    Thread.sleep(2000);
-                    String src = " ";
-                    String Gender, Lasted_upd,sex;
-                    List<WebElement> list1 = SelServices.oDriver.findElements(By.xpath("//iframe[@id='resumeIframe']"));
-                    sex=SelServices.oDriver.findElement(gender).getText();
-                    Gender = "gender" + "\r\n" + handle_gender(sex);
-                    Lasted_upd = "latest update" + "\r\n" + SelServices.oDriver.findElement(lasted_upd).getText().substring(15, 25);
-                    if (list1.size() > 0) {
-                        src = "link src" + "\r\n" + SelServices.oDriver.findElement(link_src).getAttribute("src");
-                        SelServices.oDriver.close();
-                        SelServices.oDriver.switchTo().window(MainWindow);
-                    } else {
-                        src = "link src" + "\r\n" + "no src";
-                        SelServices.oDriver.close();
-                        SelServices.oDriver.switchTo().window(MainWindow);
-                    }
-                    String v = list.get(j).getText() + "\r\n" + src + "\r\n" + Gender + "\r\n" + Lasted_upd;
-                    Data.lstCandidates.add(handing_viewd(v));
+                    String v= list.get(j).getText();
+                    //Data.lstCandidates.add(handing_viewd(v));
+                    Data.lstCandidateModel.add(handing_viewd(v));
                     count++;
-                    JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
-                    js.executeScript("arguments[0].scrollIntoView();", view);
-                    Thread.sleep(2000);
                 }
             }
             JavascriptExecutor js = ((JavascriptExecutor) SelServices.oDriver);
@@ -279,12 +304,14 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             Thread.sleep(3000);
         } while (count < n);
     }
-
-    public Candidate handing_viewd(String str) {
-        String name = "", jobtitle = "", company = "", year = "", salary = "", location = "", link = "";
+     
+    public CandiidateModel handing_viewd(String str) {
+        String name = "", jobtitle = "", company = "", year ="", salary = "", location = "", link = "";
         String gender = "", latest_upd = "";
+        //int years = 0;
         String[] lines = str.split("\\r?\\n");
         Candidate c = null;
+        CandiidateModel cd=null;
         for (int i = 0; i < lines.length; i++) {
             name = lines[0];
             jobtitle = lines[1];
@@ -292,7 +319,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 company = lines[i + 1];
             }
             if (lines[i].equalsIgnoreCase("Years of experience: ")) {
-                year = lines[i + 1];
+                year = lines[i + 1]; 
             }
             if (lines[i].equalsIgnoreCase("Expected salary:")) {
                 salary = lines[i + 1];
@@ -309,9 +336,11 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (lines[i].equalsIgnoreCase("latest update")) {
                 latest_upd = lines[i + 1];
             }
-            c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
+            //c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
+            cd= new CandiidateModel(6, name, jobtitle,handle_year(year), "link","skills","New","comment","user", "label", "latest_upd", location,"Vietnamwork", 123456);
         }
-        return c;
+        //return c;
+        return cd;
     }
 
     public Candidate handing_no_viewed(String str) {
@@ -359,8 +388,20 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
         sex=parts[1];
         return sex;
     }
+    
+    public int handle_year(String year){
+        int nam;
+        if(year.isEmpty()){
+            nam=0;
+        }else{
+        String[] parts = year.split("\\s");
+        nam= Integer.parseInt(parts[0]);
+        }
+        return nam;
+    }
+    
     public void show() {
-        for (Candidate c : Data.lstCandidates) {
+        for (CandiidateModel c : Data.lstCandidateModel) {
             System.out.println(c.toString());
         }
     }
@@ -370,12 +411,12 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     }
 
     @Override
-    public List<Candidate> Filter() {
+    public List<CandiidateModel> Filter() {
         if (NavigateToMe()) {
             if (Login()) {
                 if (clicksearch()) {
                     //set_categori("IT - Software");
-                    Data.lstCandidates = new ArrayList<>();
+                    
                     String skip_viewed = "";
                     //checkbox viewed no select
                     if (skip_viewed.isEmpty()) {
@@ -395,7 +436,8 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 }
             }
         }
-        return  Data.lstCandidates;
+        //return  Data.lstCandidates;
+        return  Data.lstCandidateModel;
         //return Recruitment_Online.lstCandidates;
         //return null;
     }

@@ -9,6 +9,7 @@ import objmodels.Candidate;
 import objmodels.Recruiter;
 import java.util.*;
 import java.util.Date;
+import objmodels.CandiidateModel;
 
 /**
  *
@@ -27,9 +28,12 @@ public class Recruitment_Online {
     
     //public static List<Candidate> lstCandidates=null;
     
-    public List<Candidate> Filter(){
+//    public List<Candidate> Filter(){
+//        return null;
+//    }
+    
+    public List<CandiidateModel> Filter(){
         return null;
     }
-    
     
 }

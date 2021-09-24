@@ -27,14 +27,6 @@ import org.xml.sax.SAXException;
  */
 public class Utils {
 
-    public static Recruiter find(String url_find) {
-        for (Recruiter re : Information.lstRecruiter) {
-            if (re.getName().equalsIgnoreCase(url_find)) {
-                return re;
-            }
-        }
-        return null;
-    }
     //get current path of the app
     public static String getCurrentPath(){
         return "";
