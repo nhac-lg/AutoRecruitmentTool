@@ -267,6 +267,10 @@ public class MainUI implements Initializable {
         txt_ExpFrom = txtExperienceFromOnlineSearch.getText();
         txt_ExpTo = txtExperienceToOnlineSearch.getText();
         txt_cbWorkingLocationOnlineSearch = cbWorkingLocationOnlineSearch.getSelectionModel().getSelectedItem();
+//        String keyword = txtSearchKeywordOnlineSearch.getText();
+//        String from = txtExperienceFromOnlineSearch.getText();
+//        String to = txtExperienceToOnlineSearch.getText();
+//        System.out.println(keyword + " " + from + " "+ to);
         Recruitment_Online orecruiter_onl;
         if (txt_cbEmloyerOnlinesearch.equalsIgnoreCase("VietNamWork")) {
             orecruiter_onl = new Recruitment_VietNamWork();
@@ -275,5 +279,4 @@ public class MainUI implements Initializable {
         Data.Update();
         refreshData();
     }
-
 }
