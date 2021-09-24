@@ -251,11 +251,14 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
+        String keyword = txtSearchKeywordOnlineSearch.getText();
+        String from = txtExperienceFromOnlineSearch.getText();
+        String to = txtExperienceToOnlineSearch.getText();
+        System.out.println(keyword + " " + from + " "+ to);
         Recruitment_Online orecruiter_onl;
         if (cbEmployerOnlineSearch.getSelectionModel().getSelectedItem().equalsIgnoreCase("VietNamWork")) {
             orecruiter_onl = new Recruitment_VietNamWork();
             orecruiter_onl.Filter();
         }
     }
-
 }
