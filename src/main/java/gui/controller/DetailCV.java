@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
  *
  * @author Eagle
  */
+ 
 public class DetailCV implements Initializable {
     /**
      * Initializes the controller class.
