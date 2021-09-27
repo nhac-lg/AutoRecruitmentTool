@@ -47,16 +47,23 @@ public class DetailCV implements Initializable {
     @FXML
     private Label lbl_src;
 
+    @FXML
+    private Label lbl_full_name;
+    @FXML
+    private Label lbl_position;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
+       view();
     }    
     
-//    private void view(){
-//        lbl_name.setText(MainUI.viewCandidateModel.getName());
-//        lbl_pos.setText(MainUI.viewCandidateModel.getJob());
-//        lbl_year.setText(String.valueOf(MainUI.viewCandidateModel.getExperience()));
-//        lbl_location.setText(MainUI.viewCandidateModel.getCan_location());
-//    }
+    private void view(){
+        lbl_name.setText(MainUI.viewCandidateModel.getName());
+        lbl_full_name.setText(MainUI.viewCandidateModel.getName());
+        lbl_pos.setText(MainUI.viewCandidateModel.getJob());
+        lbl_position.setText(MainUI.viewCandidateModel.getJob());
+        lbl_year.setText(String.valueOf(MainUI.viewCandidateModel.getExperience()));
+        lbl_location.setText(MainUI.viewCandidateModel.getCan_location());
+    }
 }

@@ -71,7 +71,7 @@
                               <Font name="System Italic" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbl_name" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="14.0" text="Nguyễn Văn A" textFill="#1d1919" textOverrun="CENTER_WORD_ELLIPSIS">
+                        <Label fx:id="lbl_full_name" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="14.0" text="Nguyễn Văn A" textFill="#1d1919" textOverrun="CENTER_WORD_ELLIPSIS">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <Font name="System Italic" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbl_pos" alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="59.0" text="Test Manual" textFill="#1d1919" textOverrun="CENTER_WORD_ELLIPSIS">
+                        <Label fx:id="lbl_position" alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="59.0" text="Test Manual" textFill="#1d1919" textOverrun="CENTER_WORD_ELLIPSIS">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>

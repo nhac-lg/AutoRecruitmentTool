@@ -303,11 +303,11 @@ public class MainUI implements Initializable {
 
     //Update data to controls after searching
     private void refreshData() {
-        cbCVDateTop.getItems().addAll(FXCollections.observableList(addAllCheck(Data.lstCVDate)));
-        cbTitlesTop.getItems().addAll(FXCollections.observableList(addAllCheck(Data.lstTitles)));
-        cbExpTop.getItems().addAll(FXCollections.observableList(addAllCheck(Data.lstExperiences)));
-        cbLabelTop.getItems().addAll(FXCollections.observableList(addAllCheck(Data.lstLabels)));
-        cbReferralTop.getItems().addAll(FXCollections.observableList(addAllCheck(Data.lstReferrals)));
+        cbCVDateTop.getItems().addAll(FXCollections.observableList(Data.lstCVDate));
+        cbTitlesTop.getItems().addAll(FXCollections.observableList(Data.lstTitles));
+        cbExpTop.getItems().addAll(FXCollections.observableList(Data.lstExperiences));
+        cbLabelTop.getItems().addAll(FXCollections.observableList(Data.lstLabels));
+        cbReferralTop.getItems().addAll(FXCollections.observableList(Data.lstReferrals));
         lstCandidates = FXCollections.observableArrayList(Data.lstCandidateModel);
         cbTitlesTop.getCheckModel().check(0);
         tbData.setItems(lstCandidates);
@@ -330,9 +330,8 @@ public class MainUI implements Initializable {
                     @Override
                     public void handle(ActionEvent t) {
                         try {
-                            //CandiidateModel c=row.getItem();
-                            //System.out.println(c.getName());
-                            System.out.println(row.getItem());   
+                            viewCandidateModel=row.getItem();       
+                            //System.out.println(row.getItem());   
                             URL url = new File("src/main/java/gui/page/DetailCV.fxml").toURI().toURL();
                             URL css = new File("src/main/java/gui/App.css").toURI().toURL();
                             Parent root = FXMLLoader.load(url);
