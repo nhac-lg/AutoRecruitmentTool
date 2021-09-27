@@ -7,7 +7,9 @@ package gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -15,13 +17,46 @@ import javafx.fxml.Initializable;
  * @author Eagle
  */
 public class DetailCV implements Initializable {
-
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private Label lbl_name;
+
+    @FXML
+    private Label lbl_gender;
+
+    @FXML
+    private Label lbl_pos;
+
+    @FXML
+    private Label lbl_joblv;
+
+    @FXML
+    private Label lbl_year;
+
+    @FXML
+    private Label lbl_company;
+
+    @FXML
+    private Label lbl_salary;
+
+    @FXML
+    private Label lbl_location;
+
+    @FXML
+    private Label lbl_src;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       
     }    
     
+//    private void view(){
+//        lbl_name.setText(MainUI.viewCandidateModel.getName());
+//        lbl_pos.setText(MainUI.viewCandidateModel.getJob());
+//        lbl_year.setText(String.valueOf(MainUI.viewCandidateModel.getExperience()));
+//        lbl_location.setText(MainUI.viewCandidateModel.getCan_location());
+//    }
 }

@@ -44,10 +44,10 @@ public class Utils {
 
     public static void ReadXML() {
         try {
-//            String currentpath = System.getProperty("user.dir");
-//            String namefile="sample_config.xml";
-//            String config=currentpath+"\\"+namefile;
-            String config = "F:\\sample_config1.xml";
+            String currentpath = System.getProperty("user.dir");
+            String namefile="sample_config.xml";
+            String config=currentpath+"\\"+namefile;
+            //String config = "F:\\sample_config1.xml";
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = null;
