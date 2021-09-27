@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import org.controlsfx.control.CheckComboBox?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="gui.controller.MainUI">
     <top>
@@ -243,13 +244,13 @@
                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ComboBox fx:id="cbTitlesTop" prefWidth="125.0" promptText="Title: all"/>
-                                <ComboBox fx:id="cbExpTop" prefWidth="125.0" promptText="Experience: all" GridPane.columnIndex="1"/>
-                                <ComboBox fx:id="cbStatusTop" prefWidth="125.0" promptText="Status: all" GridPane.columnIndex="2"/>
-                                <ComboBox fx:id="cbLabelTop" prefWidth="125.0" promptText="Label: all" GridPane.columnIndex="3"/>
-                                <ComboBox fx:id="cbLocationTop" prefWidth="125.0" promptText="Location: all" GridPane.columnIndex="4"/>
-                                <ComboBox fx:id="cbCVDateTop" prefWidth="125.0" promptText="CV Date: all" GridPane.columnIndex="5"/>
-                                <ComboBox fx:id="cbReferralTop" prefWidth="125.0" promptText="Referral: all" GridPane.columnIndex="6"/>
+                                <CheckComboBox fx:id="cbTitlesTop" prefWidth="125.0" title="Title" GridPane.columnIndex="0"/>
+                                <CheckComboBox fx:id="cbExpTop" prefWidth="125.0" title="Experience" GridPane.columnIndex="1"/>
+                                <CheckComboBox fx:id="cbStatusTop" prefWidth="125.0" title="Status" GridPane.columnIndex="2"/>
+                                <CheckComboBox fx:id="cbLabelTop" prefWidth="125.0" title="Label" GridPane.columnIndex="3"/>
+                                <CheckComboBox fx:id="cbLocationTop" prefWidth="125.0" title="Location" GridPane.columnIndex="4"/>
+                                <CheckComboBox fx:id="cbCVDateTop" prefWidth="125.0" title="CV Date" GridPane.columnIndex="5"/>
+                                <CheckComboBox fx:id="cbReferralTop" prefWidth="125.0" title="Referral" GridPane.columnIndex="6"/>
                                 <TextField fx:id="txtSearchTop" prefWidth="125.0" promptText="Search Name"
                                            style="-fx-border-width: 0.5px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: gray;"
                                            GridPane.columnIndex="7"/>
