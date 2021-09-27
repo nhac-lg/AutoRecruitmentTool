@@ -11,7 +11,6 @@ import filter.Recruitment_VietNamWork;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -315,7 +313,7 @@ public class MainUI implements Initializable {
         tbData.setItems(lstCandidates);
         tbData.refresh();
     }
-    
+
     private void CreatContextMenu() {
         tbData.setRowFactory(new Callback<TableView<CandiidateModel>, TableRow<CandiidateModel>>() {
             @Override
