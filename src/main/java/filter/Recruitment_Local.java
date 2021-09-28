@@ -5,10 +5,15 @@
  */
 package filter;
 
+import objmodels.Recruiter;
+
 /**
  *
  * @author Eagle
  */
 public class Recruitment_Local extends Recruitment_Online {
-    
+
+   public Recruitment_Local(Recruiter oRecruiter, String JobTitle, String Experience, String Expectation, String Location,String Refeeral) {
+       super(oRecruiter, JobTitle, Experience, Expectation, Location, Refeeral);  
+    }
 }

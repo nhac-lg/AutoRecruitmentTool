@@ -83,4 +83,12 @@ public class Utils {
         }
 
     }
+    public static Recruiter find(String vnwork) {
+        for (Recruiter re : Data.lstRecruiters) {
+            if (re.getName().equalsIgnoreCase(vnwork)) {
+                return re;
+            }
+        }
+        return null;
+    }
 }

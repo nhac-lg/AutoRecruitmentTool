@@ -11,6 +11,7 @@ import gui.controller.MainUI;
 import objmodels.Candidate;
 import objmodels.Recruiter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
@@ -29,7 +30,6 @@ import selenium.SelServices;
  */
 public class Recruitment_VietNamWork extends Recruitment_Online {
 
-    Recruiter Recruiter_vnwork;
     By search = By.xpath("//header/nav[1]/div[1]/div[1]/a[2]/span[1]");
     By btnLogin = By.id("btnLogin");
     By user = By.id("username");
@@ -53,10 +53,15 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     By input_year_to = By.xpath("//input[@class='rs-control year-to']");
     By gender = By.xpath("//div[@class='field field-gender-relationship']/span");
     By lasted_upd = By.xpath("//div[@class='field field-update-resume']/span");
-
-    public Recruitment_VietNamWork() {
-        Recruiter_vnwork = vnwork(MainUI.txt_cbEmloyerOnlinesearch);
+    String title = "VietnamWorks - Top employment and recruitment website in Vietnam.";
+    
+    public Recruitment_VietNamWork(Recruiter oRecruiter, String JobTitle, String Experience, String Expectation, String Location,String Refeeral) {
+       super(oRecruiter, JobTitle, Experience, Expectation, Location, Refeeral);
     }
+    
+//    public Recruitment_VietNamWork() {
+//        Recruiter_vnwork = vnwork(MainUI.txt_cbEmloyerOnlinesearch); 
+//    }
 
     private Recruiter vnwork(String vnwork) {
         for (Recruiter re : Data.lstRecruiters) {
@@ -86,10 +91,10 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
     }
 
     public boolean NavigateToMe() {
-        String title = "VietnamWorks - Top employment and recruitment website in Vietnam.";
         SelServices.oDriver.manage().window().maximize();
-        SelServices.oDriver.get(Recruiter_vnwork.getURL());
-        if (SelServices.oDriver.getTitle().equals(title)) {
+        SelServices.oDriver.get(oRecruiter.getURL());
+        //SelServices.oDriver.get(Recruiter_vnwork.getURL());
+        if (SelServices.oDriver.getTitle().startsWith(title)) {
             System.out.println("Page VietNamWork exits");
             return true;
         }
@@ -98,8 +103,8 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
 
     public boolean Login() {
         if (existsElementbyid(btnLogin)) {
-            SelServices.oDriver.findElement(user).sendKeys(Recruiter_vnwork.getoAccount().getAccName());
-            SelServices.oDriver.findElement(pass).sendKeys(Recruiter_vnwork.getoAccount().getPW());
+            SelServices.oDriver.findElement(user).sendKeys(oRecruiter.getoAccount().getAccName());
+            SelServices.oDriver.findElement(pass).sendKeys(oRecruiter.getoAccount().getPW());
             SelServices.oDriver.findElement(btnLogin).click();
             return true;
         }
@@ -337,7 +342,7 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
                 latest_upd = lines[i + 1];
             }
             //c = new Candidate(name, jobtitle, company, year, salary, location, link, gender, "phone", "referral", latest_upd, "label", "status", "skill", "comment");
-            cd= new CandiidateModel(6, name, jobtitle,handle_year(year), "link","skills","New","comment","user", "label", "latest_upd", location,"Vietnamwork", 123456);
+            cd= new CandiidateModel(1, name, jobtitle,handle_year(year), "link","skills","New","comment","user", "label", "latest_upd", location,Refeeral, 123456);
         }
         //return c;
         return cd;
@@ -416,18 +421,20 @@ public class Recruitment_VietNamWork extends Recruitment_Online {
             if (Login()) {
                 if (clicksearch()) {
                     //set_categori("IT - Software");
-                    
+                    //set_working_location(Location);
                     String skip_viewed = "";
                     //checkbox viewed no select
                     if (skip_viewed.isEmpty()) {
                         try {
                             all_print_viewd(2);
+                            Close();
                         } catch (Exception ex) {
                             Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
                         try {
                             all_print_no_viewed(2);
+                            Close();
                         } catch (Exception ex) {
                             Logger.getLogger(Recruitment_VietNamWork.class.getName()).log(Level.SEVERE, null, ex);
                         }

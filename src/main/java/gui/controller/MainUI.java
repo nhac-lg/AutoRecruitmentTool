@@ -5,6 +5,7 @@
  */
 package gui.controller;
 
+import common.Utils;
 import datacenter.Data;
 import filter.Recruitment_Online;
 import filter.Recruitment_VietNamWork;
@@ -14,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -37,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import objmodels.CandiidateModel;
+import objmodels.Recruiter;
 import org.controlsfx.control.CheckComboBox;
 
 /**
@@ -379,22 +382,19 @@ public class MainUI implements Initializable {
     @FXML
     void HandleSearchOnline(MouseEvent event) {
         System.out.println("HandleSearchOnline!");
-        txt_cbEmloyerOnlinesearch = cbEmployerOnlineSearch.getSelectionModel().getSelectedItem();
-        txt_search = txtSearchKeywordOnlineSearch.getText();
-        txt_cbLastResumeUpdateOnlineSearch = cbLastResumeUpdateOnlineSearch.getSelectionModel().getSelectedItem();
-        txt_ExpFrom = txtExperienceFromOnlineSearch.getText();
-        txt_ExpTo = txtExperienceToOnlineSearch.getText();
-        txt_cbWorkingLocationOnlineSearch = cbWorkingLocationOnlineSearch.getSelectionModel().getSelectedItem();
-//        String keyword = txtSearchKeywordOnlineSearch.getText();
-//        String from = txtExperienceFromOnlineSearch.getText();
-//        String to = txtExperienceToOnlineSearch.getText();
-//        System.out.println(keyword + " " + from + " "+ to);
+        String text_source=cbEmployerOnlineSearch.getSelectionModel().getSelectedItem();
+        String keysearch=txtSearchKeywordOnlineSearch.getText();
+        String txt_lstresumeupd=cbLastResumeUpdateOnlineSearch.getSelectionModel().getSelectedItem();
+        String expFrom=txtExperienceFromOnlineSearch.getText();
+        String expTo=txtExperienceToOnlineSearch.getText();
+        String location=cbWorkingLocationOnlineSearch.getSelectionModel().getSelectedItem();
         Recruitment_Online orecruiter_onl;
-        if (txt_cbEmloyerOnlinesearch.equalsIgnoreCase("VietNamWork")) {
-            orecruiter_onl = new Recruitment_VietNamWork();
-            orecruiter_onl.Filter();
+        if (text_source.equalsIgnoreCase("VietNamWork")) {
+            orecruiter_onl = new Recruitment_VietNamWork(Utils.find(text_source),keysearch,"","",location,text_source);
+            orecruiter_onl.Filter(); 
         }
-        Data.Update();
+        //Data.Update();
         refreshData();
+       
     }
 }
